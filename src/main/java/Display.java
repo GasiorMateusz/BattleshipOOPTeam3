@@ -5,14 +5,23 @@ public class Display {
     }
 
     /**
-     * prints the game menu. Allows user to choose
-     * <ul>
-     *     <li>manual ship placement process.</li>
-     *     <li>the gameplay</li>
-     * </ul>
+     * prints the game menu. Allows user to choose the gameplay
      */
-    public void menu() {
+    public void mainMenu() {
+        System.out.print(
+                "Main menu \n" +
+                        "\t1. PvP game\n" +
+                        "\t2. Play against AI\n" +
+                        "\t3. high scores"
+        );
+    }
 
+    public void shipPlacementOption(){
+        System.out.println(
+                "Choose ship placement mode:\n" +
+                        "\t1. manual\n" +
+                        "\t2. random\n"
+        );
     }
 
     /**
@@ -23,6 +32,10 @@ public class Display {
      * </ul>
      */
     public void board() {
+    }
+
+    public void highScores(){
+
     }
 
     /**

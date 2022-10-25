@@ -35,7 +35,7 @@ public class Game {
 
     public void boardSetUp() {
         //TODO: in future, allow user to placement ships manually
-        display.menu();
+        display.mainMenu();
         int option = input.getMenuOption();
         switch (option) {
             //TODO
