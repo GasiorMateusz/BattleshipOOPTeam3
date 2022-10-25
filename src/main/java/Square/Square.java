@@ -11,10 +11,10 @@ public class Square {
     }
 
     public void updateSquareStatus(){
-        if(status == SquareStatus.Empty){
-
-        }else{
-            //...
+        if (status == SquareStatus.Empty) {
+            status = SquareStatus.Missed;
+        } else if(status == SquareStatus.Ship){
+            status = SquareStatus.Hit;
         }
     }
     public SquareStatus getStatus(){
