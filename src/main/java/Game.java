@@ -5,6 +5,15 @@ public class Game {
 
     Input input;
     Display display;
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
     Player player1;
     Player player2;
 
