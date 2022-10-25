@@ -57,12 +57,12 @@ public class Game {
        // display.gameOver();
     }
 
-    /**
-     * take all the actions required to make single player's move.
-     *
-     * //@param player - player that is moving now
-     * @return true if enemy lost the game, otherwise false
-     */
+//    /**
+//     * take all the actions required to make single player's move.
+//     *
+//     * @param player - player that is moving now
+//     * @return true if enemy lost the game, otherwise false
+//     */
 //    public boolean playRound(Player player) {
 //        Player enemyPlayer = player2;
 //        Square playerShot = null;

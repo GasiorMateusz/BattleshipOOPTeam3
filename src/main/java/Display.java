@@ -1,3 +1,6 @@
+import Board.Board;
+import Square.Square;
+
 public class Display {
 
     public void printMessage(String message) {
@@ -25,13 +28,20 @@ public class Display {
     }
 
     /**
-     * prints board during:
-     * <ul>
-     *     <li>manual ship placement process.</li>
-     *     <li>the gameplay</li>
-     * </ul>
+     * Prints a board instance.
+     * @param board - instance to be printed
      */
-    public void board() {
+    public void board(Board board) {
+        StringBuilder row = new StringBuilder();
+        for (Square[] boardRow: board.getOcean()
+             ) {
+            for (Square square: boardRow
+                 ) {
+                row.append(square.display());
+            }
+            row.append("\n");
+            System.out.println(row);
+        }
     }
 
     public void highScores(){
