@@ -32,8 +32,8 @@ public class Game {
             //TODO
             case 1:
                 BoardFactory boardFactory = new BoardFactory();
-                boardFactory.randomPlacement(player1.getBoard());
-                boardFactory.randomPlacement(player2.getBoard());
+            //    boardFactory.randomPlacement(player1.getBoard());
+            //    boardFactory.randomPlacement(player2.getBoard());
                 break;
             //case 2:...
         }
@@ -42,28 +42,31 @@ public class Game {
     public void play() {
         boardSetUp();
         do {
-            if (playRound(player1)) break;
-            if (playRound(player2)) break;
+        //    if (playRound(player1)) break;
+        //    if (playRound(player2)) break;
         } while (true);
-        display.gameOver();
+       // display.gameOver();
     }
 
     /**
      * take all the actions required to make single player's move.
      *
-     * @param player - player that is moving now
+     * //@param player - player that is moving now
      * @return true if enemy lost the game, otherwise false
      */
-    public boolean playRound(Player player) {
-        Player enemyPlayer = player2;
-        Square playerShot = null;
-        display.board();
-        while (!input.isCorrect(playerShot)) {
-            playerShot = input.getShot(player);
-        }
-        checkShot(enemyPlayer, playerShot);
-        display.board();
-        return enemyPlayer.isAlive();
+//    public boolean playRound(Player player) {
+//        Player enemyPlayer = player2;
+//        Square playerShot = null;
+//        display.board();
+//        while (!input.isCorrect(playerShot)) {
+//            playerShot = input.getShot(player);
+//        }
+//        checkShot(enemyPlayer, playerShot);
+//        display.board();
+//        return enemyPlayer.isAlive();
+//
+//    }
+    public void playRound(){
 
     }
 
