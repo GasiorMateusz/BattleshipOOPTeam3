@@ -28,7 +28,12 @@ public class Display {
     /**
      * prints the outcome of the game when it is over.(Congratulations to the winner)
      */
-    public void gameOver() {
+    public void gameOver(Game game) {
+        int winner = 2;
+        if (game.getPlayer1().isAlive()){
+            winner = 1;
+        }
+        System.out.printf("Congratulations! Player %o has won!%n",winner);
     }
 
 }

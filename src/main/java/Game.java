@@ -5,6 +5,15 @@ public class Game {
 
     Input input;
     Display display;
+
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
     Player player1;
     Player player2;
 
@@ -45,7 +54,7 @@ public class Game {
             if (playRound(player1)) break;
             if (playRound(player2)) break;
         } while (true);
-        display.gameOver();
+        display.gameOver(this);
     }
 
     /**
