@@ -19,23 +19,23 @@ public class Game {
     }
 
     public void showMainMenu() {
-        /*
-        The Battleship class displays the main menu and allows the user to a start new game, display high scores, and exit.
-         */
-    }
+        boolean tryAgain = true;
+        int option;
 
-    public void boardSetUp() {
-        //TODO: in future, allow user to placement ships manually
-        display.menu();
-        int option = input.getMenuOption();
-        switch (option) {
-            //TODO
-            case 1:
-                BoardFactory boardFactory = new BoardFactory();
-                boardFactory.randomPlacement(player1.getBoard());
-                boardFactory.randomPlacement(player2.getBoard());
-                break;
-            //case 2:...
+        while (tryAgain) {
+            display.menu();
+            option = input.getMenuOption();
+            switch (option) {
+                case 1:
+                    play();
+                    break;
+                case 2:
+                    // TODO: odczyt najlepszych wyników z pliku
+                    break;
+                case 3:
+                    tryAgain = false;
+                    break;
+            }
         }
     }
 
@@ -48,22 +48,43 @@ public class Game {
         display.gameOver();
     }
 
+
+    public void boardSetUp() {
+        //TODO: in future, allow user choose beetween placement ships manually or randomly
+        // ustaw obie plansze na sztywno
+        BoardFactory boardFactory = new BoardFactory();
+        boardFactory.randomPlacement(player1.getBoard());
+        boardFactory.randomPlacement(player2.getBoard());
+
+    }
+
+
+
     /**
      * take all the actions required to make single player's move.
      *
      * @param player - player that is moving now
      * @return true if enemy lost the game, otherwise false
      */
+
     public boolean playRound(Player player) {
-        Player enemyPlayer = player2;
         Square playerShot = null;
+        Player enemyPlayer;
+        if (player == player1) {
+            enemyPlayer = player2;
+        } else {
+            enemyPlayer = player1;
+        }
+
         display.board();
-        while (!input.isCorrect(playerShot)) {
+        while (!input.isCorrect(playerShot)){
             playerShot = input.getShot(player);
         }
         checkShot(enemyPlayer, playerShot);
         display.board();
         return enemyPlayer.isAlive();
+
+
 
     }
 
@@ -71,5 +92,12 @@ public class Game {
         return false;
     }
 
+    public void checkHighScore(){
+
+    }
 
 }
+//glowna petla gry wyswietlajaca menu
+// liczenie strzalow
+// sprawdzanie highscore
+// ustawienie plansz na sztywno
