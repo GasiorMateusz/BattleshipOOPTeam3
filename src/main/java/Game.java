@@ -66,12 +66,12 @@ public class Game {
     public boolean playRound(Player player) {
         Player enemyPlayer = player2;
         Square playerShot = null;
-        display.board();
+        display.board(enemyPlayer.getBoard());
         while (!input.isCorrect(playerShot)) {
             playerShot = input.getShot(player);
         }
         checkShot(enemyPlayer, playerShot);
-        display.board();
+        display.board(enemyPlayer.getBoard());
         return enemyPlayer.isAlive();
 
     }
