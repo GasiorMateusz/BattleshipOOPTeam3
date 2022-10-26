@@ -48,17 +48,6 @@ public class Board {
 
     public boolean isPlacementOk(int[] startPoint, int[] endPoint, ShipType shipType) {
 
-        StringBuilder row = new StringBuilder();
-        for (Square[] boardRow: this.getOcean()
-        ) {
-            for (Square square: boardRow
-            ) {
-                row.append(square.display());
-            }
-            row.append("\n");
-        }
-        System.out.println(row);
-        System.out.println(startPoint[0]+"|"+startPoint[1]+"\n"+endPoint[0]+"|"+endPoint[1]+"\n"+shipType.getShipLength());
         for (int shipPart = 0; shipPart < shipType.getShipLength(); shipPart++) {
             for (int[] point: new int[][]{startPoint,endPoint}
                  ) {
