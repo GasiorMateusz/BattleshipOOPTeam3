@@ -52,11 +52,7 @@ public class Display {
     /**
      * prints the outcome of the game when it is over.(Congratulations to the winner)
      */
-    public void gameOver(Game game) {
-        int winner = 2;
-        if (game.getPlayer1().isAlive()){
-            winner = 1;
-        }
+    public void gameOver(int winner) {
         System.out.printf("Congratulations! Player %o has won!%n",winner);
     }
 

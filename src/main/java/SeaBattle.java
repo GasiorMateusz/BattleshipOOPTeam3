@@ -4,6 +4,7 @@ public class SeaBattle {
 
     Game game;
     Input input;
+    Display display;
     Player player1;
     Player player2;
     BoardFactory boardFactory = new BoardFactory();
@@ -40,7 +41,11 @@ public class SeaBattle {
             if (!game.playRound(player1)) break;
             if (!game.playRound(player2)) break;
         } while (true);
-        display.gameOver();
+        int winner = 2;
+        if (game.getPlayer1().isAlive()) {
+            winner = 1;
+        }
+        display.gameOver(winner);
     }
 
 
