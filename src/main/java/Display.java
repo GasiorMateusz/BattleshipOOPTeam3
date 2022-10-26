@@ -3,6 +3,9 @@ import Square.Square;
 
 public class Display {
 
+    public static final String WRONG_INPUT_MENU = "Wrong input, Try again!";
+    public static final String WRONG_INPUT_SHOT = "Wrong input. Try again! Input example: A1";
+
     public void printMessage(String message) {
         System.out.println(message);
     }

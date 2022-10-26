@@ -11,6 +11,11 @@ public class Square {
         this.status = status;
     }
 
+    public Square(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
     public String display () {
         return status.getCharacter();
     }

@@ -1,6 +1,8 @@
 import Board.BoardFactory;
 import Square.Square;
 
+import java.util.Scanner;
+
 public class Game {
 
     Input input;
