@@ -34,7 +34,7 @@ public class SeaBattle {
         int option;
 
         while (tryAgain) {
-            display.mainMenu();
+            display.mainMenu();    ///////
             option = input.getMenuOption();
             switch (option) {
                 case 1:

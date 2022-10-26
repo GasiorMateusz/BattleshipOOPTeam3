@@ -10,7 +10,7 @@ public class Input {
     public int getMenuOption() {
         String option = scanner.nextLine();
         Pattern pattern = Pattern.compile("^[1-4]$");
-        if (pattern.matcher(option).matches()) {
+        if (!pattern.matcher(option).matches()) {
             return Integer.parseInt(option);
         }
         else {
