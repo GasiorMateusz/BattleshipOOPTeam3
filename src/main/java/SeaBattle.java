@@ -1,5 +1,7 @@
 import Board.BoardFactory;
 
+import java.util.Scanner;
+
 public class SeaBattle {
 
     Game game = new Game();
