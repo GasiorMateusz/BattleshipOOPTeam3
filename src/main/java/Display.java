@@ -3,11 +3,16 @@ import Square.Square;
 
 public class Display {
 
-    public static final String WRONG_INPUT_MENU = "Wrong input, Try again!";
-    public static final String WRONG_INPUT_SHOT = "Wrong input. Try again! Input example: A1";
-
     public void printMessage(String message) {
         System.out.println(message);
+    }
+
+    public void printWrongMenuInputMessage() {
+        System.out.println("Wrong input, enter answer from 1 to 4!");
+    }
+
+    public void printWrongShotInputMessage() {
+        System.out.println("Wrong input. Try again! Shot input example: A1!");
     }
 
     /**
