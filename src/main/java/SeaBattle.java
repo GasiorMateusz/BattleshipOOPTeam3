@@ -34,7 +34,7 @@ public class SeaBattle {
         int option;
 
         while (tryAgain) {
-            display.mainMenu();
+            display.mainMenu();    ///////
             option = input.getMenuOption();
             switch (option) {
                 case 1:
@@ -48,6 +48,8 @@ public class SeaBattle {
                 case 4:
                     tryAgain = false;
                     break;
+                case 5:
+                    break;
             }
         }
     }
@@ -59,7 +61,7 @@ public class SeaBattle {
         while (true) {
             display.board(opponentPlayer.board.getOcean());
             display.printMessage("Choose coordinates");
-            int[] coordinatesToShot = input.getShot(currentPlayer);
+            int[] coordinatesToShot = input.getShot();
             if (game.playRound(opponentPlayer, coordinatesToShot)) {
                 display.board(opponentPlayer.board.getOcean());
                 swapPlayers();
