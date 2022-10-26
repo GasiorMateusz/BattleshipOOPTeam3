@@ -24,9 +24,12 @@ public class Game {
      */
 
     public boolean playRound (Player enemyPlayer, int[] playerShot) {
+        int x = playerShot[0];
+        int y = playerShot[1];
 
         checkShot(enemyPlayer, playerShot);
-        display.printSquareStatus(enemyPlayer.board.ocean[playerShot[0]][playerShot[1]]);
+        display.printSquareStatus(enemyPlayer.board.ocean[x][y]);
+
         return enemyPlayer.isAlive();
     }
 
