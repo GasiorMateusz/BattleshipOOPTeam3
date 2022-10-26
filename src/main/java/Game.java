@@ -1,4 +1,5 @@
 import Board.BoardFactory;
+import Ship.Ship;
 import Square.Square;
 
 import java.util.Scanner;
@@ -6,7 +7,7 @@ import java.util.Scanner;
 public class Game {
 
     Input input;
-    Display display;
+    Display display = new Display();
     Player player1;
     Player player2;
 
@@ -23,8 +24,12 @@ public class Game {
      */
 
     public boolean playRound (Player enemyPlayer, int[] playerShot) {
+        int x = playerShot[0];
+        int y = playerShot[1];
 
         checkShot(enemyPlayer, playerShot);
+        display.printSquareStatus(enemyPlayer.board.ocean[x][y]);
+
         return enemyPlayer.isAlive();
     }
 
@@ -41,6 +46,7 @@ public class Game {
         int y = playerShot[1];
 
         enemyPlayer.board.ocean[x][y].updateSquareStatus();
+        enemyPlayer.ships.forEach(Ship::updateShipStatus);
 
     }
     public boolean isGameOver() {
