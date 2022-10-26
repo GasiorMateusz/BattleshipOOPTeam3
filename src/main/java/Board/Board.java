@@ -3,15 +3,15 @@ package Board;
 import Ship.Ship;
 import Square.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
 
     public Square[][] ocean;
-    List<Ship> ships;
+    List<Ship> ships = new ArrayList<Ship>();
 
-    public Board(List<Ship> ships) {
-        this.ships = ships;
+    public Board() {
         populateTheOcean();
     }
 
