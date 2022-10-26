@@ -1,44 +1,46 @@
-import Board.Board;
 import Board.BoardFactory;
-import Square.Square;
 
 public class SeaBattle {
+
+    Game game;
+    Input input;
     Player player1;
     Player player2;
-    Display display;
     BoardFactory boardFactory = new BoardFactory();
 
-    Game game = new Game();
-
     public SeaBattle() {
-        player1 = createPlayer();
-        // player2 = createPlayer();
-
-        display = new Display();
-        display.board(player1.getBoard().ocean);
-//        for (int row = 0; row < ocean.length; row++) {
-//            for (int col = 0; col < ocean.length; col++) {
-//                System.out.print(ocean[row][col].getStatus().getCharacter());
-//            }
-//            System.out.println();
-//        }
-
 
     }
 
-    public Player createPlayer() {
-        /*
-        player chooses manual vs random
-         */
-        return new Player(boardFactory.testPlacement());
-    }
+    public void showMainMenu() {
+        boolean tryAgain = true;
+        int option;
 
-    public void playGame() {
-
-        while (true) {
-            game.playRound();
+        while (tryAgain) {
+            display.menu();
+            option = input.getMenuOption();
+            switch (option) {
+                case 1:
+                    play();
+                    break;
+                case 2:
+                    // TODO: read high score from file
+                    break;
+                case 3:
+                    tryAgain = false;
+                    break;
+            }
         }
     }
-}
+
+
+    public void play() {
+
+        do {
+            if (!game.playRound(player1)) break;
+            if (!game.playRound(player2)) break;
+        } while (true);
+        display.gameOver();
+    }
 
 
