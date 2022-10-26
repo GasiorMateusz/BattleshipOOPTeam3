@@ -2,9 +2,14 @@ package Square;
 
 public class Square {
 
-    private int X;
-    private int Y;
+    private int x;
+    private int y;
     SquareStatus status;
+    public Square(int x,int y, SquareStatus status){
+        this.x = x;
+        this.y = y;
+        this.status = status;
+    }
 
     public String display () {
         return status.getCharacter();
@@ -21,4 +26,11 @@ public class Square {
         return status;
     }
 
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
 }
