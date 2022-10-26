@@ -1,7 +1,9 @@
 package Board;
 
 import Ship.Ship;
-import Square.*;
+import Ship.ShipType;
+import Square.Square;
+import Square.SquareStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,18 +19,12 @@ public class Board {
 
     private void populateTheOcean() {
         ocean = new Square[10][10];
-        ships.forEach(ship -> {
-            for (Square square : ship.getSquares()) {
-                ocean[square.getX()][square.getY()] = square;
-            }
-        });
         for (int row = 0; row < ocean.length; row++) {
             for (int col = 0; col < ocean.length; col++) {
-                if (ocean[row][col] == null) {
-                    ocean[row][col] = new Square(row,col, SquareStatus.Empty);
-                }
+                ocean[row][col] = new Square(row, col, SquareStatus.Empty);
             }
         }
+    }
 
     }
 
