@@ -22,7 +22,7 @@ public class Ship {
     private void updateShipStatus(){
         if(!isAlive)
             return;
-        isAlive = squares.stream().allMatch(square -> square.getStatus() != SquareStatus.Hit);
+        isAlive = squares.stream().anyMatch(square -> square.getStatus() != SquareStatus.Hit);
     }
 
     public List<Square> getSquares() {

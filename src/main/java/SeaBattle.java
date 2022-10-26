@@ -29,8 +29,7 @@ public class SeaBattle {
         /*
         player chooses manual vs random
          */
-        Board board = boardFactory.testPlacement();
-        return new Player(board);
+        return new Player(boardFactory.testPlacement());
     }
 
     public void playGame() {
