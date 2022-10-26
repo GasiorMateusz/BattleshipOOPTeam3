@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class Input {
-    Display display;
+    Display display = new Display();
     Scanner scanner = new Scanner(System.in);
     boolean isShotInputCorrect = false;
     String squarplayerShotInput = null;
@@ -60,9 +60,6 @@ public class Input {
     private boolean checkRegex() {
         squarplayerShotInput = scanner.nextLine();
         Pattern pattern = Pattern.compile("^[a-z][0-9]{1,2}$");
-        if ((Integer.parseInt(squarplayerShotInput.substring(1)) - 1) > 10) {
-            return false;
-        }
         return pattern.matcher(squarplayerShotInput).matches();
     }
 }
