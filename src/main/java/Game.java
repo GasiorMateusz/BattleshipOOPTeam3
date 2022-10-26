@@ -36,12 +36,12 @@ public class Game {
             enemyPlayer = player1;
         }
 
-        display.board();
+        display.board(player.board.getOcean());
         while (!input.isCorrect(playerShot)){
             playerShot = input.getShot(player);
         }
         checkShot(enemyPlayer, playerShot);
-        display.board();
+        display.board(player.board.getOcean());
         return enemyPlayer.isAlive();
 
     }
