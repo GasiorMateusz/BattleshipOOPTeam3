@@ -46,4 +46,7 @@ public class Board {
         return ships;
     }
 
+    public Square[][] getOcean() {
+        return ocean;
+    }
 }

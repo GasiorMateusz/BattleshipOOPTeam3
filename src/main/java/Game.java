@@ -8,6 +8,14 @@ public class Game {
     Player player1;
     Player player2;
 
+    public Player getPlayer1() {
+        return player1;
+    }
+
+    public Player getPlayer2() {
+        return player2;
+    }
+
 
 
 
@@ -28,12 +36,12 @@ public class Game {
             enemyPlayer = player1;
         }
 
-        display.board();
+        display.board(player.board.getOcean());
         while (!input.isCorrect(playerShot)){
             playerShot = input.getShot(player);
         }
         checkShot(enemyPlayer, playerShot);
-        display.board();
+        display.board(player.board.getOcean());
         return enemyPlayer.isAlive();
 
     }
