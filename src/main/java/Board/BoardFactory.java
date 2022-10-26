@@ -2,18 +2,51 @@ package Board;
 
 import Ship.Ship;
 import Ship.ShipType;
-import Square.*;
+import Square.Square;
+import Square.SquareStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BoardFactory {
 
-//    public Board randomPlacement() {
-//
-//        return new Board();
-//
-//    }
+    /**
+     * return random int in range < min, max >. The numbers at the ends of the range are included.
+     */
+    private int getRandomInt(int min, int max) {
+        return (int) ((Math.random() * (max - min + 2)) + min - 1);
+    }
+
+    private int[] getRandomPoint(int boardLength) {
+        return new int[]{getRandomInt(0, boardLength - 1), getRandomInt(0, boardLength - 1)};
+    }
+
+    private Ship createShip(int[] startPoint, int[] endPoint, ShipType shipType) {
+        List<Square> squares = new ArrayList<>();
+        for (int partOfShip = 1; partOfShip <= shipType.getShipLength(); partOfShip++) {
+            squares.add(
+                    new Square(startPoint[0] + partOfShip * (endPoint[0] - startPoint[0]) / shipType.getShipLength(),
+                            startPoint[1] + partOfShip * (endPoint[1] - startPoint[1]) / shipType.getShipLength(),
+                            SquareStatus.Ship));
+        }
+        return new Ship(squares);
+    }
+
+    public Board randomPlacement() {
+        Board board = new Board();
+        int boardLength = board.getOcean().length;
+        ShipType[] shipTypes = ShipType.getTypes();
+        for (ShipType shipType : shipTypes) {
+            int[] startPoint;
+            int[] endPoint;
+            do {
+                startPoint = getRandomPoint(boardLength);
+                endPoint = new int[]{startPoint[0], startPoint[1] + shipType.getShipLength()};
+            } while (!board.isPlacementOk(startPoint, endPoint, shipType));
+            board.addShip(createShip(startPoint, endPoint, shipType));
+        }
+        return board;
+    }
 
     public void manualPlacement(Board board) {
         /*
@@ -40,7 +73,7 @@ public class BoardFactory {
             ships.add(new Ship(squares));
             row++;
         }
-        return new Board(ships);
+        return new Board();
     }
 
 }
