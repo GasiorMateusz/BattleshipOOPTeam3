@@ -26,7 +26,7 @@ public class SeaBattle {
     }
 
     private Player createPlayer() {
-        return new Player(boardFactory.testPlacement());
+        return new Player(boardFactory.randomPlacement());
     }
 
     public void showMainMenu() {
@@ -57,10 +57,10 @@ public class SeaBattle {
 
     public void play() {
         setUpGame();
-
+        display.printPlayer1Round();
         while (true) {
             display.board(opponentPlayer.board.getOcean());
-            display.printMessage("Choose coordinates");
+            display.printMessage("Choose coordinates: ");
             int[] coordinatesToShot = input.getShot();
             if (game.playRound(opponentPlayer, coordinatesToShot)) {
                 display.board(opponentPlayer.board.getOcean());
@@ -75,9 +75,11 @@ public class SeaBattle {
 
     private void swapPlayers() {
         if (currentPlayer == player1) {
+            display.printPlayer2Round();
             currentPlayer = player2;
             opponentPlayer = player1;
         } else {
+            display.printPlayer1Round();
             currentPlayer = player1;
             opponentPlayer = player2;
         }
