@@ -18,7 +18,7 @@ public class SeaBattle {
         int option;
 
         while (tryAgain) {
-            display.menu();
+            display.mainMenu();
             option = input.getMenuOption();
             switch (option) {
                 case 1:
@@ -36,7 +36,6 @@ public class SeaBattle {
 
 
     public void play() {
-
         do {
             if (!game.playRound(player1)) break;
             if (!game.playRound(player2)) break;
@@ -47,5 +46,6 @@ public class SeaBattle {
         }
         display.gameOver(winner);
     }
+}
 
 
