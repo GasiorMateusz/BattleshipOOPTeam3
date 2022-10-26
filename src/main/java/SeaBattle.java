@@ -2,15 +2,29 @@ import Board.BoardFactory;
 
 public class SeaBattle {
 
-    Game game;
+    Game game = new Game();
     Input input;
     Display display;
     Player player1;
     Player player2;
+    Player currentPlayer;
+    Player opponentPlayer;
     BoardFactory boardFactory = new BoardFactory();
 
     public SeaBattle() {
 
+    }
+
+    private void setUpGame() {
+        player1 = createPlayer();
+        currentPlayer = player1;
+        player2 = createPlayer();
+        opponentPlayer = player2;
+
+    }
+
+    private Player createPlayer() {
+        return new Player(boardFactory.testPlacement());
     }
 
     public void showMainMenu() {
@@ -25,9 +39,11 @@ public class SeaBattle {
                     play();
                     break;
                 case 2:
-                    // TODO: read high score from file
+                    play();
                     break;
                 case 3:
+                    //TODO show highScores
+                case 4:
                     tryAgain = false;
                     break;
             }
@@ -36,16 +52,32 @@ public class SeaBattle {
 
 
     public void play() {
-        do {
-            if (!game.playRound(player1)) break;
-            if (!game.playRound(player2)) break;
-        } while (true);
-        int winner = 2;
-        if (game.getPlayer1().isAlive()) {
-            winner = 1;
+        setUpGame();
+
+        while (true) {
+            display.board(opponentPlayer.board.getOcean());
+            display.printMessage("Choose coordinates");
+            int[] coordinatesToShot = input.getShot(currentPlayer);
+            if (game.playRound(opponentPlayer, coordinatesToShot)) {
+                display.board(opponentPlayer.board.getOcean());
+                swapPlayers();
+                continue;
+            }
+            display.board(opponentPlayer.board.getOcean());
+            display.gameOver(1);
+            break;
         }
-        display.gameOver(winner);
+    }
+
+    private void swapPlayers() {
+        if (currentPlayer == player1) {
+            currentPlayer = player2;
+            opponentPlayer = player1;
+        } else {
+            currentPlayer = player1;
+            opponentPlayer = player2;
+        }
+
+
     }
 }
-
-
