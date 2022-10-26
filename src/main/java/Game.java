@@ -8,71 +8,56 @@ public class Game {
     Player player1;
     Player player2;
 
+
+
+
+    /**
+     * take all the actions required to make single player's move.
+     *
+     * @param player - player that is moving now
+     * @return false if enemy lost the game, otherwise true
+     */
+
+    public boolean playRound(Player player) {
+        Square playerShot = null;
+        Player enemyPlayer;
+
+        if (player == player1) {
+            enemyPlayer = player2;
+        } else {
+            enemyPlayer = player1;
+        }
+
+        display.board();
+        while (!input.isCorrect(playerShot)){
+            playerShot = input.getShot(player);
+        }
+        checkShot(enemyPlayer, playerShot);
+        display.board();
+        return enemyPlayer.isAlive();
+
+    }
+
     /**
      * check if enemy ship got hit and get
      * @param enemy - opposite player
      * @param playerShot - square chosen by the player
      */
+
     public void checkShot(Player enemy, Square playerShot) {
         enemy.board.getSquare(playerShot).updateSquareStatus();
 
     }
 
-    public void showMainMenu() {
-        /*
-        The Battleship class displays the main menu and allows the user to a start new game, display high scores, and exit.
-         */
-    }
-
-    public void boardSetUp() {
-        //TODO: in future, allow user to placement ships manually
-        display.menu();
-        int option = input.getMenuOption();
-        switch (option) {
-            //TODO
-            case 1:
-                BoardFactory boardFactory = new BoardFactory();
-            //    boardFactory.randomPlacement(player1.getBoard());
-            //    boardFactory.randomPlacement(player2.getBoard());
-                break;
-            //case 2:...
-        }
-    }
-
-    public void play() {
-        boardSetUp();
-        do {
-        //    if (playRound(player1)) break;
-        //    if (playRound(player2)) break;
-        } while (true);
-       // display.gameOver();
-    }
-
-    /**
-     * take all the actions required to make single player's move.
-     *
-     * //@param player - player that is moving now
-     * @return true if enemy lost the game, otherwise false
-     */
-//    public boolean playRound(Player player) {
-//        Player enemyPlayer = player2;
-//        Square playerShot = null;
-//        display.board();
-//        while (!input.isCorrect(playerShot)) {
-//            playerShot = input.getShot(player);
-//        }
-//        checkShot(enemyPlayer, playerShot);
-//        display.board();
-//        return enemyPlayer.isAlive();
-//
-//    }
-    public void playRound(){
-
-    }
 
     public boolean isGameOver() {
         return false;
     }
 
+    public void checkHighScore(){
+
+    }
 
 }
+
+
