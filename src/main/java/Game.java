@@ -12,44 +12,35 @@ public class Game {
 
 
     /**
-     * take all the actions required to make single player's move.
+     * Takes all the actions required to make single player's move.
      *
-     * @param player - player that is moving now
+     * @param enemyPlayer - opposite player
+     * @param playerShot - array with shot's coordinates
+     *
      * @return false if enemy lost the game, otherwise true
      */
 
-    public boolean playRound(Player player) {
-        Square playerShot = null;
-        Player enemyPlayer;
+    public boolean playRound (Player enemyPlayer, int[] playerShot) {
 
-        if (player == player1) {
-            enemyPlayer = player2;
-        } else {
-            enemyPlayer = player1;
-        }
-
-        display.board();
-        while (!input.isCorrect(playerShot)){
-            playerShot = input.getShot(player);
-        }
         checkShot(enemyPlayer, playerShot);
-        display.board();
         return enemyPlayer.isAlive();
-
     }
 
     /**
-     * check if enemy ship got hit and get
-     * @param enemy - opposite player
-     * @param playerShot - square chosen by the player
+     * Checks if enemy ship got hit and get
+     * @param enemyPlayer - opposite player
+     * @param playerShot - array with shot's coordinates
      */
 
-    public void checkShot(Player enemy, Square playerShot) {
-        enemy.board.getSquare(playerShot).updateSquareStatus();
+
+    public void checkShot(Player enemyPlayer, int[] playerShot) {
+
+        int x = playerShot[0];
+        int y = playerShot[1];
+
+        enemyPlayer.board.ocean[x][y].updateSquareStatus();
 
     }
-
-
     public boolean isGameOver() {
         return false;
     }
