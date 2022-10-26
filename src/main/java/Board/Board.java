@@ -38,16 +38,38 @@ public class Board {
         return null;
     }
 
-    public boolean isPlacementOk() {
-        //sprawdza czy statki sie nie stykaja, czy nie wychodza poza plansze
-        return false;
-    }
-
     public List<Ship> getShips() {
         return ships;
     }
 
     public Square[][] getOcean() {
         return ocean;
+    }
+
+    public boolean isPlacementOk(int[] startPoint, int[] endPoint, ShipType shipType) {
+
+        StringBuilder row = new StringBuilder();
+        for (Square[] boardRow: this.getOcean()
+        ) {
+            for (Square square: boardRow
+            ) {
+                row.append(square.display());
+            }
+            row.append("\n");
+        }
+        System.out.println(row);
+        System.out.println(startPoint[0]+"|"+startPoint[1]+"\n"+endPoint[0]+"|"+endPoint[1]+"\n"+shipType.getShipLength());
+        for (int shipPart = 0; shipPart < shipType.getShipLength(); shipPart++) {
+            for (int[] point: new int[][]{startPoint,endPoint}
+                 ) {
+                for (int coor: point
+                     ) {
+                    if(coor<0 || coor>ocean.length-1) return false;
+                }
+            }
+            if (ocean[startPoint[0] + shipPart * (endPoint[0]-startPoint[0])/shipType.getShipLength()]
+                    [startPoint[1]  + shipPart * (endPoint[1]-startPoint[1])/shipType.getShipLength()].getStatus() == SquareStatus.Ship) return false;
+        }
+        return true;
     }
 }
