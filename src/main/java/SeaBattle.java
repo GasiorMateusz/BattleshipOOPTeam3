@@ -57,10 +57,10 @@ public class SeaBattle {
 
     public void play() {
         setUpGame();
-
+        display.printMessage("Player 1 >>>\n");
         while (true) {
             display.board(opponentPlayer.board.getOcean());
-            display.printMessage("Choose coordinates");
+            display.printMessage("Choose coordinates: ");
             int[] coordinatesToShot = input.getShot();
             if (game.playRound(opponentPlayer, coordinatesToShot)) {
                 display.board(opponentPlayer.board.getOcean());
@@ -75,9 +75,11 @@ public class SeaBattle {
 
     private void swapPlayers() {
         if (currentPlayer == player1) {
+            display.printMessage("Player 2 >>>\n");
             currentPlayer = player2;
             opponentPlayer = player1;
         } else {
+            display.printMessage("Player 1 >>>\n");
             currentPlayer = player1;
             opponentPlayer = player2;
         }

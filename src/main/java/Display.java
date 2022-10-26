@@ -7,6 +7,11 @@ public class Display {
         System.out.println(message);
     }
 
+    public void printSquareStatus(Square shot) {
+        System.out.println(shot.getStatus() + "!\n");
+    }
+
+
     public void printWrongMenuInputMessage() {
         System.out.println("Wrong input, enter answer from 1 to 4!");
     }

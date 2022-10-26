@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Game {
 
     Input input;
-    Display display;
+    Display display = new Display();
     Player player1;
     Player player2;
 
@@ -26,6 +26,7 @@ public class Game {
     public boolean playRound (Player enemyPlayer, int[] playerShot) {
 
         checkShot(enemyPlayer, playerShot);
+        display.printSquareStatus(enemyPlayer.board.ocean[playerShot[0]][playerShot[1]]);
         return enemyPlayer.isAlive();
     }
 
