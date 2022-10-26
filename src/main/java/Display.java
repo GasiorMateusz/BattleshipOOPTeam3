@@ -41,21 +41,28 @@ public class Display {
         );
     }
 
+
+
     /**
      * Prints a board instance.
      * @param ocean - instance to be printed
      */
-    public void board(Square[][] ocean) {
-        StringBuilder row = new StringBuilder();
-        for (Square[] boardRow: ocean
-             ) {
-            for (Square square: boardRow
-                 ) {
-                row.append(square.display());
+
+    public void board (Square[][] ocean) {
+
+        StringBuilder fields = new StringBuilder();
+        for (int row = 0; row < ocean.length; row++) {
+                fields.append("\t").append(row + 1);
             }
-            row.append("\n");
+        fields.append("\n");
+        for (int row = 0; row < ocean.length; row++) {
+            fields.append((char) (row + 65));
+            for (int column = 0; column < ocean.length; column++) {
+                fields.append("\t").append(ocean[row][column].display());
+            }
+            fields.append("\n");
         }
-        System.out.println(row);
+        System.out.println(fields);
     }
 
     public void highScores(){
