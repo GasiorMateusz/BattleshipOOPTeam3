@@ -19,7 +19,7 @@ public class Ship {
         return isAlive;
     }
 
-    private void updateShipStatus(){
+    public void updateShipStatus(){
         if(!isAlive)
             return;
         isAlive = squares.stream().anyMatch(square -> square.getStatus() != SquareStatus.Hit);

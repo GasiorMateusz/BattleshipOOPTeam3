@@ -1,4 +1,5 @@
 import Board.BoardFactory;
+import Ship.Ship;
 import Square.Square;
 
 import java.util.Scanner;
@@ -41,6 +42,7 @@ public class Game {
         int y = playerShot[1];
 
         enemyPlayer.board.ocean[x][y].updateSquareStatus();
+        enemyPlayer.ships.forEach(Ship::updateShipStatus);
 
     }
     public boolean isGameOver() {

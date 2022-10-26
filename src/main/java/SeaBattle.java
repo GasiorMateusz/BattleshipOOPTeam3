@@ -5,8 +5,8 @@ import java.util.Scanner;
 public class SeaBattle {
 
     Game game = new Game();
-    Input input;
-    Display display;
+    Input input = new Input();
+    Display display = new Display();
     Player player1;
     Player player2;
     Player currentPlayer;
