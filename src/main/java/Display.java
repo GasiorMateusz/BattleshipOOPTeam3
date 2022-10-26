@@ -2,6 +2,8 @@ import Board.Board;
 import Square.Square;
 import Square.SquareStatus;
 
+import java.util.Arrays;
+
 public class Display {
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -57,14 +59,15 @@ public class Display {
 
     /**
      * Prints a board instance.
+     * areShipsVisible flag decides whether player can see all ships on the board.
      *
      * @param ocean - instance to be printed
      */
 
-
     public void board(Square[][] ocean) {
-        boolean areShipsVisible = false;
+        boolean areShipsVisible = true;
         StringBuilder fields = new StringBuilder();
+
         for (int row = 0; row < ocean.length; row++) {
             fields.append("\t").append(row + 1);
         }
@@ -82,8 +85,8 @@ public class Display {
             for (int row = 0; row < ocean.length; row++) {
                 fields.append((char) (row + 65));
                 for (int column = 0; column < ocean.length; column++) {
-                    if (ocean[row][column].getStatus().equals(SquareStatus.Missed) ||
-                            ocean[row][column].getStatus().equals(SquareStatus.Hit)) {
+                    SquareStatus status = ocean[row][column].getStatus();
+                    if (status.equals(SquareStatus.Missed) || status.equals(SquareStatus.Hit)) {
                         fields.append("\t").append(ocean[row][column].display());
                     } else {
                         fields.append("\t").append(" ");
@@ -93,10 +96,7 @@ public class Display {
             }
         }
         System.out.println(fields);
-
     }
-
-
     public void highScores() {
 
     }

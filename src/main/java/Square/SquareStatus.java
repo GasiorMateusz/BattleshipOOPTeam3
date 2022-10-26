@@ -3,7 +3,7 @@ package Square;
 public enum SquareStatus {
 
     Empty(" "),
-    Ship("O"),
+    Ship("o"),
     Hit("X"),
     Missed("*");
 

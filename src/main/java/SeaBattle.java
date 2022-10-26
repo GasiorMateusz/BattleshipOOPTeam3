@@ -26,7 +26,7 @@ public class SeaBattle {
     }
 
     private Player createPlayer() {
-        return new Player(boardFactory.testPlacement());
+        return new Player(boardFactory.randomPlacement());
     }
 
     public void showMainMenu() {
