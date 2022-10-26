@@ -2,8 +2,8 @@ package Square;
 
 public class Square {
 
-    private int x;
-    private int y;
+    private final int x;
+    private final int y;
     SquareStatus status;
     public Square(int x,int y, SquareStatus status){
         this.x = x;
@@ -27,6 +27,7 @@ public class Square {
             status = SquareStatus.Hit;
         }
     }
+
     public SquareStatus getStatus(){
         return status;
     }

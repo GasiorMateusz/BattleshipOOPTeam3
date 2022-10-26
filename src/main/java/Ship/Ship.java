@@ -2,7 +2,6 @@ package Ship;
 
 import Square.Square;
 import Square.SquareStatus;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -11,6 +10,7 @@ public class Ship {
     List<Square> squares;
     ShipType shipType;
     boolean isAlive = true;
+
     public Ship(List<Square> squares){
         this.squares = squares;
     }
