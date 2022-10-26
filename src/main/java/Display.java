@@ -29,19 +29,19 @@ public class Display {
 
     /**
      * Prints a board instance.
-     * @param board - instance to be printed
+     * @param ocean - instance to be printed
      */
-    public void board(Board board) {
+    public void board(Square[][] ocean) {
         StringBuilder row = new StringBuilder();
-        for (Square[] boardRow: board.getOcean()
+        for (Square[] boardRow: ocean
              ) {
             for (Square square: boardRow
                  ) {
                 row.append(square.display());
             }
             row.append("\n");
-            System.out.println(row);
         }
+        System.out.println(row);
     }
 
     public void highScores(){

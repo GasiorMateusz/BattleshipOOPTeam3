@@ -5,6 +5,8 @@ public class Game {
 
     Input input;
     Display display;
+    Player player1;
+    Player player2;
 
     public Player getPlayer1() {
         return player1;
@@ -14,12 +16,10 @@ public class Game {
         return player2;
     }
 
-    Player player1;
-    Player player2;
-
     /**
      * check if enemy ship got hit and get
-     * @param enemy - opposite player
+     *
+     * @param enemy      - opposite player
      * @param playerShot - square chosen by the player
      */
     public void checkShot(Player enemy, Square playerShot) {
@@ -41,8 +41,8 @@ public class Game {
             //TODO
             case 1:
                 BoardFactory boardFactory = new BoardFactory();
-            //    boardFactory.randomPlacement(player1.getBoard());
-            //    boardFactory.randomPlacement(player2.getBoard());
+                //    boardFactory.randomPlacement(player1.getBoard());
+                //    boardFactory.randomPlacement(player2.getBoard());
                 break;
             //case 2:...
         }
@@ -51,13 +51,13 @@ public class Game {
     public void play() {
         boardSetUp();
         do {
-        //    if (playRound(player1)) break;
-        //    if (playRound(player2)) break;
+            //    if (playRound(player1)) break;
+            //    if (playRound(player2)) break;
         } while (true);
-       // display.gameOver();
+        // display.gameOver();
     }
 
-//    /**
+    //    /**
 //     * take all the actions required to make single player's move.
 //     *
 //     * @param player - player that is moving now
@@ -75,7 +75,7 @@ public class Game {
 //        return enemyPlayer.isAlive();
 //
 //    }
-    public void playRound(){
+    public void playRound() {
 
     }
 

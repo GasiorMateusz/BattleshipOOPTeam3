@@ -5,6 +5,7 @@ import Square.Square;
 public class SeaBattle {
     Player player1;
     Player player2;
+    Display display;
     BoardFactory boardFactory = new BoardFactory();
 
     Game game = new Game();
@@ -13,14 +14,14 @@ public class SeaBattle {
         player1 = createPlayer();
         // player2 = createPlayer();
 
-        Square[][] ocean = player1.getBoard().ocean;
-
-        for (int row = 0; row < ocean.length; row++) {
-            for (int col = 0; col < ocean.length; col++) {
-                System.out.print(ocean[row][col].getStatus().getCharacter());
-            }
-            System.out.println();
-        }
+        display = new Display();
+        display.board(player1.getBoard().ocean);
+//        for (int row = 0; row < ocean.length; row++) {
+//            for (int col = 0; col < ocean.length; col++) {
+//                System.out.print(ocean[row][col].getStatus().getCharacter());
+//            }
+//            System.out.println();
+//        }
 
 
     }
