@@ -7,6 +7,7 @@ public class SeaBattle {
     Display display;
     Player player1;
     Player player2;
+    BoardFactory boardFactory = new BoardFactory();
 
     public SeaBattle() {
 
@@ -17,7 +18,7 @@ public class SeaBattle {
         int option;
 
         while (tryAgain) {
-            display.menu();
+            display.mainMenu();
             option = input.getMenuOption();
             switch (option) {
                 case 1:
@@ -35,13 +36,16 @@ public class SeaBattle {
 
 
     public void play() {
-
         do {
             if (!game.playRound(player1)) break;
             if (!game.playRound(player2)) break;
         } while (true);
-        display.gameOver();
+        int winner = 2;
+        if (game.getPlayer1().isAlive()) {
+            winner = 1;
+        }
+        display.gameOver(winner);
     }
-
-
 }
+
+
