@@ -8,13 +8,12 @@ public class Input {
     String squarplayerShotInput = null;
 
     public int getMenuOption() {
-        String option = scanner.nextLine();
+        String option = scanner.nextLine().strip();
         Pattern pattern = Pattern.compile("^[1-4]$");
-        if (!pattern.matcher(option).matches()) {
+        if (pattern.matcher(option).matches()) {
             return Integer.parseInt(option);
         }
         else {
-            display.printWrongMenuInputMessage();
             return 5;
         }
     }
