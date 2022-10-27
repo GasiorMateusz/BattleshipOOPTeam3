@@ -8,6 +8,8 @@ import Square.SquareStatus;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.abs;
+
 public class Board {
 
     public Square[][] ocean;
@@ -26,11 +28,11 @@ public class Board {
         }
     }
 
-    public void addShip(Ship ship){
+    public void addShip(Ship ship) {
         ships.add(ship);
-        for (Square square: ship.getSquares()
-             ) {
-                ocean[square.getX()][square.getY()] = square;
+        for (Square square : ship.getSquares()
+        ) {
+            ocean[square.getX()][square.getY()] = square;
         }
     }
 
@@ -46,18 +48,27 @@ public class Board {
         return ocean;
     }
 
-    public boolean isPlacementOk(int[] startPoint, int[] endPoint, ShipType shipType) {
+    private boolean isInBound(Point point) {
+        if (point.getX() < 0 || point.getX() > ocean.length - 1) return false;
+        return !(point.getY() < 0 || point.getY() > ocean.length - 1);
+    }
 
-        for (int shipPart = 0; shipPart < shipType.getShipLength(); shipPart++) {
-            for (int[] point: new int[][]{startPoint,endPoint}
-                 ) {
-                for (int coor: point
-                     ) {
-                    if(coor<0 || coor>ocean.length-1) return false;
-                }
-            }
-            if (ocean[startPoint[0] + shipPart * (endPoint[0]-startPoint[0])/shipType.getShipLength()]
-                    [startPoint[1]  + shipPart * (endPoint[1]-startPoint[1])/shipType.getShipLength()].getStatus() == SquareStatus.Ship) return false;
+    private Point getShipDirection(Point bow, Point stern) {
+        int length = abs(stern.getY() - bow.getY() + stern.getX() - bow.getX());
+        return new Point(
+                (stern.getX() - bow.getX()) / length,
+                (stern.getY() - bow.getY()) / length
+        );
+    }
+
+    public boolean isPlacementOk(Point bow, Point stern, ShipType shipType) {
+        if (!isInBound(bow) || !isInBound(stern)) return false;
+        for (int shipPart = 0; shipPart <= shipType.getShipLength(); shipPart++) {
+            Point direction = getShipDirection(bow, stern);
+            if (ocean[bow.getX() + shipPart * direction.getX()]
+                    [bow.getY() + shipPart * direction.getY()].
+                    getStatus() == SquareStatus.Ship)
+                return false;
         }
         return true;
     }
