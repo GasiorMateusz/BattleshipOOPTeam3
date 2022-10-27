@@ -1,6 +1,5 @@
 import Board.BoardFactory;
 
-import java.util.Scanner;
 
 public class SeaBattle {
 
@@ -59,15 +58,15 @@ public class SeaBattle {
         setUpGame();
         display.printPlayer1Round();
         while (true) {
-            display.board(opponentPlayer.board.getOcean());
-            display.printMessage("Choose coordinates: ");
+            display.boardWithoutShips(opponentPlayer.board.getOcean());
+            display.chooseCoordinates();
             int[] coordinatesToShot = input.getShot();
             if (game.playRound(opponentPlayer, coordinatesToShot)) {
-                display.board(opponentPlayer.board.getOcean());
+                display.boardWithoutShips(opponentPlayer.board.getOcean());
                 swapPlayers();
                 continue;
             }
-            display.board(opponentPlayer.board.getOcean());
+            display.boardWithoutShips(opponentPlayer.board.getOcean());
             display.gameOver(1);
             break;
         }
