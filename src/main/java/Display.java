@@ -1,8 +1,7 @@
-import Board.Board;
+
 import Square.Square;
 import Square.SquareStatus;
 
-import java.util.Arrays;
 
 public class Display {
     public static final String ANSI_RESET = "\u001B[0m";
@@ -64,7 +63,24 @@ public class Display {
      * @param ocean - instance to be printed
      */
 
-    public void board(Square[][] ocean) {
+    public void boardWithShips (Square[][] ocean) {
+        StringBuilder fields = new StringBuilder();
+
+        for (int row = 0; row < ocean.length; row++) {
+            fields.append("\t").append(row + 1);
+        }
+        fields.append("\n");
+
+        for (int row = 0; row < ocean.length; row++) {
+            fields.append((char) (row + 65));
+            for (int column = 0; column < ocean.length; column++) {
+                fields.append("\t").append(ocean[row][column].display());
+            }
+            fields.append("\n");
+        }
+        System.out.println(fields);
+    }
+    public void boardWithoutShips(Square[][] ocean) {
         boolean areShipsVisible = true;
         StringBuilder fields = new StringBuilder();
 
@@ -73,28 +89,20 @@ public class Display {
         }
         fields.append("\n");
 
-        if (areShipsVisible) {
-            for (int row = 0; row < ocean.length; row++) {
-                fields.append((char) (row + 65));
-                for (int column = 0; column < ocean.length; column++) {
+
+        for (int row = 0; row < ocean.length; row++) {
+            fields.append((char) (row + 65));
+            for (int column = 0; column < ocean.length; column++) {
+                SquareStatus status = ocean[row][column].getStatus();
+                if (status.equals(SquareStatus.Missed) || status.equals(SquareStatus.Hit)) {
                     fields.append("\t").append(ocean[row][column].display());
+                } else {
+                    fields.append("\t").append(" ");
                 }
-                fields.append("\n");
             }
-        } else {
-            for (int row = 0; row < ocean.length; row++) {
-                fields.append((char) (row + 65));
-                for (int column = 0; column < ocean.length; column++) {
-                    SquareStatus status = ocean[row][column].getStatus();
-                    if (status.equals(SquareStatus.Missed) || status.equals(SquareStatus.Hit)) {
-                        fields.append("\t").append(ocean[row][column].display());
-                    } else {
-                        fields.append("\t").append(" ");
-                    }
-                }
-                fields.append("\n");
-            }
+            fields.append("\n");
         }
+
         System.out.println(fields);
     }
     public void highScores() {
