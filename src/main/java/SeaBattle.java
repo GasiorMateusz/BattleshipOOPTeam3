@@ -1,19 +1,38 @@
 import Board.BoardFactory;
 
-
 public class SeaBattle {
 
-    Game game = new Game();
-    Input input = new Input();
-    Display display = new Display();
-    Player player1;
-    Player player2;
-    Player currentPlayer;
-    Player opponentPlayer;
-    BoardFactory boardFactory = new BoardFactory();
+    private final Game game = new Game();
+    private final Input input = new Input();
+    private final Display display = new Display();
+    private Player player1;
+    private Player player2;
+    private Player currentPlayer;
+    private Player opponentPlayer;
+    private final BoardFactory boardFactory = new BoardFactory();
 
-    public SeaBattle() {
+    public void mainMenu() {
+        int option;
+        while (true) {
+            display.mainMenu();
+            option = input.getMenuOption();
+            switch (option) {
+                case 1 -> playGame();
+                case 2 -> playGame();
+                case 3 -> showHighScore();
+                case 4 -> exitGame();
+                default -> display.printWrongMenuInputMessage();
+            }
+        }
+    }
 
+    private void showHighScore() {
+        display.printMessage("To implement");
+    }
+
+    private void exitGame() {
+        display.printMessage("Goodbye ! Come again !!");
+        System.exit(0);
     }
 
     private void setUpGame() {
@@ -21,55 +40,41 @@ public class SeaBattle {
         currentPlayer = player1;
         player2 = createPlayer();
         opponentPlayer = player2;
-
     }
 
     private Player createPlayer() {
-        return new Player(boardFactory.randomPlacement());
+        return new Player(boardFactory.randomPlacement(), "Elon Musk");
     }
 
-    public void showMainMenu() {
-        boolean tryAgain = true;
-        int option;
-
-        while (tryAgain) {
-            display.mainMenu();    ///////
-            option = input.getMenuOption();
-            switch (option) {
-                case 1:
-                    play();
-                    break;
-                case 2:
-                    play();
-                    break;
-                case 3:
-                    //TODO show highScores
-                case 4:
-                    tryAgain = false;
-                    break;
-                case 5:
-                    break;
-            }
-        }
-    }
-
-
-    public void play() {
+    private void playGame() {
         setUpGame();
         display.printPlayer1Round();
         while (true) {
-            display.boardWithoutShips(opponentPlayer.board.getOcean());
-            display.chooseCoordinates();
-            int[] coordinatesToShot = input.getShot();
-            if (game.playRound(opponentPlayer, coordinatesToShot)) {
-                display.boardWithoutShips(opponentPlayer.board.getOcean());
-                swapPlayers();
+            askForCoordinates();
+            if (game.playRound(opponentPlayer, input.getShot())) {
+                continueGame();
                 continue;
             }
-            display.boardWithoutShips(opponentPlayer.board.getOcean());
-            display.gameOver(1);
+            gameOver();
             break;
         }
+    }
+
+    private void gameOver() {
+        display.boardWithoutShips(opponentPlayer.board.getOcean());
+        display.gameOver(currentPlayer.getName());
+        exitGame();
+    }
+
+    private void continueGame() {
+        display.boardWithoutShips(opponentPlayer.board.getOcean());
+        waitForFewSeconds();
+        swapPlayers();
+    }
+
+    private void askForCoordinates() {
+        display.boardWithoutShips(opponentPlayer.board.getOcean());
+        display.chooseCoordinates();
     }
 
     private void swapPlayers() {
@@ -82,7 +87,13 @@ public class SeaBattle {
             currentPlayer = player1;
             opponentPlayer = player2;
         }
+    }
 
-
+    private void waitForFewSeconds() {
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException ie) {
+            display.printMessage(ie.getMessage());
+        }
     }
 }
