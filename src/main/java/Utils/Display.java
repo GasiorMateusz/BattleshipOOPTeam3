@@ -46,8 +46,8 @@ public class Display {
                 "Main menu \n" +
                         "\t1. PvP game\n" +
                         "\t2. Play against AI\n" +
-                        "\t3. high scores\n" +
-                        "\t4. quit\n"
+                        "\t3. High scores\n" +
+                        "\t4. Quit\n"
         );
     }
 
