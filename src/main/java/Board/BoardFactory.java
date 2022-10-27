@@ -17,8 +17,8 @@ public class BoardFactory {
         return (int) ((Math.random() * (max - min + 2)) + min - 1);
     }
 
-    private int[] getRandomPoint(int boardLength) {
-        return new int[]{getRandomInt(0, boardLength - 1), getRandomInt(0, boardLength - 1)};
+    private Point getRandomPoint(int boardLength) {
+        return new Point(getRandomInt(0, boardLength - 1), getRandomInt(0, boardLength - 1));
     }
 
     private Ship createShip(int[] startPoint, int[] endPoint, ShipType shipType) {
@@ -37,21 +37,15 @@ public class BoardFactory {
         int boardLength = board.getOcean().length;
         ShipType[] shipTypes = ShipType.getTypes();
         for (ShipType shipType : shipTypes) {
-            int[] startPoint;
-            int[] endPoint;
+            Point startPoint;
+            Point endPoint;
             do {
                 startPoint = getRandomPoint(boardLength);
-                endPoint = new int[]{startPoint[0], startPoint[1]};
-                int direction = getRandomInt(0,3);
-                switch (direction){
-                    case 0: endPoint[0] += shipType.getShipLength();
-                    break;
-                    case 1: endPoint[0] -= shipType.getShipLength();
-                    break;
-                    case 2: endPoint[1] += shipType.getShipLength();
-                    break;
-                    case 3: endPoint[1] -= shipType.getShipLength();
-                }
+                Direction direction = Direction.values()[getRandomInt(0, Direction.values().length - 1)];
+                endPoint = new Point(
+                        startPoint.getX() + direction.getValue().getX() * shipType.getShipLength(),
+                        startPoint.getY() + direction.getValue().getY() * shipType.getShipLength()
+                );
             } while (!board.isPlacementOk(startPoint, endPoint, shipType));
             board.addShip(createShip(startPoint, endPoint, shipType));
         }
