@@ -4,16 +4,13 @@ import Ship.Ship;
 import Ship.ShipType;
 import Square.Square;
 import Square.SquareStatus;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static java.lang.Math.abs;
 
 public class Board {
-
-    public Square[][] ocean;
-    List<Ship> ships = new ArrayList<Ship>();
+    private Square[][] ocean;
+    private final List<Ship> ships = new ArrayList<>();
 
     public Board() {
         populateTheOcean();
@@ -36,16 +33,24 @@ public class Board {
         }
     }
 
-    public Square getSquare(Square square) {
-        return null;
-    }
-
     public List<Ship> getShips() {
         return ships;
     }
 
     public Square[][] getOcean() {
         return ocean;
+    }
+
+    public boolean isPlacementOk(Point bow, Point stern, ShipType shipType) {
+        if (!isInBound(bow) || !isInBound(stern)) return false;
+        for (int shipPart = 0; shipPart <= shipType.getShipLength(); shipPart++) {
+            Point direction = getShipDirection(bow, stern);
+            if (ocean[bow.getX() + shipPart * direction.getX()]
+                    [bow.getY() + shipPart * direction.getY()].
+                    getStatus() == SquareStatus.Ship)
+                return false;
+        }
+        return true;
     }
 
     private boolean isInBound(Point point) {
@@ -59,17 +64,5 @@ public class Board {
                 (stern.getX() - bow.getX()) / length,
                 (stern.getY() - bow.getY()) / length
         );
-    }
-
-    public boolean isPlacementOk(Point bow, Point stern, ShipType shipType) {
-        if (!isInBound(bow) || !isInBound(stern)) return false;
-        for (int shipPart = 0; shipPart <= shipType.getShipLength(); shipPart++) {
-            Point direction = getShipDirection(bow, stern);
-            if (ocean[bow.getX() + shipPart * direction.getX()]
-                    [bow.getY() + shipPart * direction.getY()].
-                    getStatus() == SquareStatus.Ship)
-                return false;
-        }
-        return true;
     }
 }

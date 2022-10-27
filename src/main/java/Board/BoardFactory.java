@@ -4,12 +4,30 @@ import Ship.Ship;
 import Ship.ShipType;
 import Square.Square;
 import Square.SquareStatus;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class BoardFactory {
 
+    public Board randomPlacement() {
+        Board board = new Board();
+        int boardLength = board.getOcean().length;
+        ShipType[] shipTypes = ShipType.getTypes();
+        for (ShipType shipType : shipTypes) {
+            Point bow;
+            Point stern;
+            do {
+                bow = getRandomPoint(boardLength);
+                Direction direction = Direction.values()[getRandomInt(0, Direction.values().length - 1)];
+                stern = new Point(
+                        bow.getX() + direction.getValue().getX() * shipType.getShipLength(),
+                        bow.getY() + direction.getValue().getY() * shipType.getShipLength()
+                );
+            } while (!board.isPlacementOk(bow, stern, shipType));
+            board.addShip(createShip(bow, stern, shipType));
+        }
+        return board;
+    }
     /**
      * return random int in range < min, max >. The numbers at the ends of the range are included.
      */
@@ -30,26 +48,6 @@ public class BoardFactory {
                             SquareStatus.Ship));
         }
         return new Ship(squares);
-    }
-
-    public Board randomPlacement() {
-        Board board = new Board();
-        int boardLength = board.getOcean().length;
-        ShipType[] shipTypes = ShipType.getTypes();
-        for (ShipType shipType : shipTypes) {
-            Point bow;
-            Point stern;
-            do {
-                bow = getRandomPoint(boardLength);
-                Direction direction = Direction.values()[getRandomInt(0, Direction.values().length - 1)];
-                stern = new Point(
-                        bow.getX() + direction.getValue().getX() * shipType.getShipLength(),
-                        bow.getY() + direction.getValue().getY() * shipType.getShipLength()
-                );
-            } while (!board.isPlacementOk(bow, stern, shipType));
-            board.addShip(createShip(bow, stern, shipType));
-        }
-        return board;
     }
 
     public void manualPlacement(Board board) {

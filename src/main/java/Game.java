@@ -1,19 +1,6 @@
-import Board.BoardFactory;
+import Board.Point;
 import Ship.Ship;
-import Square.Square;
-
-import java.util.Scanner;
-
 public class Game {
-
-    Input input;
-    Display display = new Display();
-    Player player1;
-    Player player2;
-
-
-
-
     /**
      * Takes all the actions required to make single player's move.
      *
@@ -23,40 +10,12 @@ public class Game {
      * @return false if enemy lost the game, otherwise true
      */
 
-    public boolean playRound (Player enemyPlayer, int[] playerShot) {
-        int x = playerShot[0];
-        int y = playerShot[1];
+    public boolean playRound (Player enemyPlayer, Point point) {
 
-        checkShot(enemyPlayer, playerShot);
-        display.printSquareStatus(enemyPlayer.board.ocean[x][y]);
-
+        enemyPlayer.getBoard().getOcean()[point.getX()][point.getY()].updateSquareStatus();
+        enemyPlayer.getShips().forEach(Ship::updateShipStatus);
         return enemyPlayer.isAlive();
     }
-
-    /**
-     * Checks if enemy ship got hit and get
-     * @param enemyPlayer - opposite player
-     * @param playerShot - array with shot's coordinates
-     */
-
-
-    public void checkShot(Player enemyPlayer, int[] playerShot) {
-
-        int x = playerShot[0];
-        int y = playerShot[1];
-
-        enemyPlayer.board.ocean[x][y].updateSquareStatus();
-        enemyPlayer.ships.forEach(Ship::updateShipStatus);
-
-    }
-    public boolean isGameOver() {
-        return false;
-    }
-
     public void checkHighScore(){
-
     }
-
 }
-
-

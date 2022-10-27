@@ -1,4 +1,7 @@
 import Board.BoardFactory;
+import Board.Point;
+import Utils.Display;
+import Utils.Input;
 
 public class SeaBattle {
 
@@ -36,23 +39,26 @@ public class SeaBattle {
     }
 
     private void setUpGame() {
-        player1 = createPlayer();
+        player1 = createPlayer("first");
         currentPlayer = player1;
-        player2 = createPlayer();
+        player2 = createPlayer("second");
         opponentPlayer = player2;
     }
 
-    private Player createPlayer() {
-        return new Player(boardFactory.randomPlacement(), "Elon Musk");
+    private Player createPlayer(String number) {
+        return new Player(boardFactory.randomPlacement(), getPlayerName(number));
+    }
+    private String getPlayerName(String number){
+        display.askForName(number);
+        return input.getName();
     }
 
     private void playGame() {
         setUpGame();
-        display.printPlayer1Round();
         while (true) {
-            askForCoordinates();
-            if (game.playRound(opponentPlayer, input.getShot())) {
-                continueGame();
+            Point pointToShoot = askForCoordinates();
+            if (game.playRound(opponentPlayer, pointToShoot)) {
+                continueGame(pointToShoot);
                 continue;
             }
             gameOver();
@@ -61,29 +67,30 @@ public class SeaBattle {
     }
 
     private void gameOver() {
-        display.boardWithoutShips(opponentPlayer.board.getOcean());
+        display.boardWithoutShips(opponentPlayer.getBoard().getOcean());
         display.gameOver(currentPlayer.getName());
         exitGame();
     }
 
-    private void continueGame() {
-        display.boardWithoutShips(opponentPlayer.board.getOcean());
+    private void continueGame(Point point) {
+        display.boardWithoutShips(opponentPlayer.getBoard().getOcean());
+        display.printSquareStatus(opponentPlayer.getBoard().getOcean()[point.getX()][point.getY()]);
         waitForFewSeconds();
         swapPlayers();
     }
 
-    private void askForCoordinates() {
-        display.boardWithoutShips(opponentPlayer.board.getOcean());
+    private Point askForCoordinates() {
+        display.printPlayerRound(currentPlayer.getName());
+        display.boardWithoutShips(opponentPlayer.getBoard().getOcean());
         display.chooseCoordinates();
+        return input.getShot();
     }
 
     private void swapPlayers() {
         if (currentPlayer == player1) {
-            display.printPlayer2Round();
             currentPlayer = player2;
             opponentPlayer = player1;
         } else {
-            display.printPlayer1Round();
             currentPlayer = player1;
             opponentPlayer = player2;
         }
