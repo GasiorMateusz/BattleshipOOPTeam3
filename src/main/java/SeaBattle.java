@@ -58,15 +58,15 @@ public class SeaBattle {
         setUpGame();
         display.printPlayer1Round();
         while (true) {
-            display.boardWithShips(opponentPlayer.board.getOcean());
-            display.printMessage("Choose coordinates: ");
+            display.boardWithoutShips(opponentPlayer.board.getOcean());
+            display.chooseCoordinates();
             int[] coordinatesToShot = input.getShot();
             if (game.playRound(opponentPlayer, coordinatesToShot)) {
-                display.boardWithShips(opponentPlayer.board.getOcean());
+                display.boardWithoutShips(opponentPlayer.board.getOcean());
                 swapPlayers();
                 continue;
             }
-            display.boardWithShips(opponentPlayer.board.getOcean());
+            display.boardWithoutShips(opponentPlayer.board.getOcean());
             display.gameOver(1);
             break;
         }

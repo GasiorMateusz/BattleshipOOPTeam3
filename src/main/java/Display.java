@@ -4,22 +4,31 @@ import Square.SquareStatus;
 
 
 public class Display {
-    public static final String ANSI_RESET = "\u001B[0m";
-    public static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_BLUE = "\u001b[34m";
-    public static final String ANSI_CYAN = "\u001B[36m";
-    public static final String ANSI_MAGENTA = "\u001B[35m";
+    public final String ANSI_RESET = "\u001B[0m";
+    public  final String ANSI_RED = "\u001B[31m";
+    public final String ANSI_BLUE = "\u001b[34m";
+    public final String ANSI_CYAN = "\u001B[36m";
+    public final String ANSI_MAGENTA = "\u001B[35m";
+    public final String ANSI_GREEN = "\u001B[32m";
+    public  final String ANSI_PURPLE = "\u001B[35m";
+    public final String ANSI_OCEAN = "\033[48;5;27m";
+    public final String ANSI_MISSED = "\033[48;5;15m";
+    public final String ANSI_HIT = "\033[48;5;9m";
+    final String FORMAT = "%3.40s";
 
     public void printMessage(String message) {
         System.out.println(message);
     }
 
+    public void chooseCoordinates() {
+        System.out.print(ANSI_GREEN + "Choose coordinates: " + ANSI_RESET);
+    }
     public void printPlayer1Round() {
-        System.out.println(ANSI_CYAN + "\u001b[1m Player 1 " + ANSI_RESET + ANSI_BLUE + " >>>\n" + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "\u001b[1m PLAYER 1 " + ANSI_RESET + ANSI_BLUE + " >>>\n" + ANSI_RESET);
     }
 
     public void printPlayer2Round() {
-        System.out.println(ANSI_CYAN + "\u001b[1m Player 2 " + ANSI_RESET + ANSI_BLUE + " >>>\n" + ANSI_RESET);
+        System.out.println(ANSI_PURPLE + "\u001b[1m PLAYER 2 " + ANSI_RESET + ANSI_BLUE + " >>>\n" + ANSI_RESET);
     }
 
     public void printSquareStatus(Square shot) {
@@ -80,8 +89,36 @@ public class Display {
         }
         System.out.println(fields);
     }
+
     public void boardWithoutShips(Square[][] ocean) {
-        boolean areShipsVisible = true;
+        StringBuilder fields = new StringBuilder();
+
+        for (int row = 0; row < ocean.length; row++) {
+            fields.append("  ").append(row + 1);
+        }
+        fields.append("\n");
+
+
+        for (int row = 0; row < ocean.length; row++) {
+            fields.append((char) (row + 65));
+            for (int column = 0; column < ocean.length; column++) {
+                SquareStatus status = ocean[row][column].getStatus();
+                if (status.equals(SquareStatus.Missed)) {
+                    fields.append(ANSI_MISSED + "  " + ANSI_RESET).append(ANSI_MISSED + " " + ANSI_RESET);
+                } else if (status.equals(SquareStatus.Hit)){
+                    fields.append(ANSI_HIT + "  " + ANSI_RESET).append(ANSI_HIT + " " + ANSI_RESET);
+                } else {
+                    fields.append(ANSI_OCEAN + "  " + ANSI_RESET).append(ANSI_OCEAN + " " + ANSI_RESET);
+                }
+            }
+            fields.append("\n");
+        }
+
+        System.out.println(fields);
+    }
+    /*
+
+    public void boardWithoutShips(Square[][] ocean) {
         StringBuilder fields = new StringBuilder();
 
         for (int row = 0; row < ocean.length; row++) {
@@ -105,6 +142,8 @@ public class Display {
 
         System.out.println(fields);
     }
+
+    */
     public void highScores() {
 
     }
