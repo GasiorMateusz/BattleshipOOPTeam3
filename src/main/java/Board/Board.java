@@ -48,13 +48,13 @@ public class Board {
         return ocean;
     }
 
-    private boolean isInBound(Point point){
-        if (point.getX()<0 || point.getX()>ocean.length-1) return false;
-        return !(point.getY()<0 || point.getY()>ocean.length-1);
+    private boolean isInBound(Point point) {
+        if (point.getX() < 0 || point.getX() > ocean.length - 1) return false;
+        return !(point.getY() < 0 || point.getY() > ocean.length - 1);
     }
 
-    private Point getShipDirection(Point bow, Point stern){
-        int length = abs(stern.getY()-bow.getY() + stern.getX() - bow.getX());
+    private Point getShipDirection(Point bow, Point stern) {
+        int length = abs(stern.getY() - bow.getY() + stern.getX() - bow.getX());
         return new Point(
                 (stern.getX() - bow.getX()) / length,
                 (stern.getY() - bow.getY()) / length
@@ -62,9 +62,9 @@ public class Board {
     }
 
     public boolean isPlacementOk(Point bow, Point stern, ShipType shipType) {
-        if(!isInBound(bow)||!isInBound(stern)) return false;
+        if (!isInBound(bow) || !isInBound(stern)) return false;
         for (int shipPart = 0; shipPart <= shipType.getShipLength(); shipPart++) {
-            Point direction = getShipDirection(bow,stern);
+            Point direction = getShipDirection(bow, stern);
             if (ocean[bow.getX() + shipPart * direction.getX()]
                     [bow.getY() + shipPart * direction.getY()].
                     getStatus() == SquareStatus.Ship)
