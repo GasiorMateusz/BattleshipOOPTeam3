@@ -61,20 +61,20 @@ public class SeaBattle {
     }
 
     private void gameOver() {
-        display.board(opponentPlayer.board.getOcean());
+        display.boardWithoutShips(opponentPlayer.board.getOcean());
         display.gameOver(currentPlayer.getName());
         exitGame();
     }
 
     private void continueGame() {
-        display.board(opponentPlayer.board.getOcean());
+        display.boardWithoutShips(opponentPlayer.board.getOcean());
         waitForFewSeconds();
         swapPlayers();
     }
 
     private void askForCoordinates() {
-        display.board(opponentPlayer.board.getOcean());
-        display.printMessage("Choose coordinates: ");
+        display.boardWithoutShips(opponentPlayer.board.getOcean());
+        display.chooseCoordinates();
     }
 
     private void swapPlayers() {
