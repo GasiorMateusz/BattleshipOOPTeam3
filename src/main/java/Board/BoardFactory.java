@@ -21,12 +21,12 @@ public class BoardFactory {
         return new Point(getRandomInt(0, boardLength - 1), getRandomInt(0, boardLength - 1));
     }
 
-    private Ship createShip(int[] startPoint, int[] endPoint, ShipType shipType) {
+    private Ship createShip(Point bow, Point stern, ShipType shipType) {
         List<Square> squares = new ArrayList<>();
         for (int partOfShip = 1; partOfShip <= shipType.getShipLength(); partOfShip++) {
             squares.add(
-                    new Square(startPoint[0] + partOfShip * (endPoint[0] - startPoint[0]) / shipType.getShipLength(),
-                            startPoint[1] + partOfShip * (endPoint[1] - startPoint[1]) / shipType.getShipLength(),
+                    new Square(bow.getX() + partOfShip * (stern.getX() - bow.getX()) / shipType.getShipLength(),
+                            bow.getY() + partOfShip * (stern.getY() - bow.getY()) / shipType.getShipLength(),
                             SquareStatus.Ship));
         }
         return new Ship(squares);
@@ -37,17 +37,17 @@ public class BoardFactory {
         int boardLength = board.getOcean().length;
         ShipType[] shipTypes = ShipType.getTypes();
         for (ShipType shipType : shipTypes) {
-            Point startPoint;
-            Point endPoint;
+            Point bow;
+            Point stern;
             do {
-                startPoint = getRandomPoint(boardLength);
+                bow = getRandomPoint(boardLength);
                 Direction direction = Direction.values()[getRandomInt(0, Direction.values().length - 1)];
-                endPoint = new Point(
-                        startPoint.getX() + direction.getValue().getX() * shipType.getShipLength(),
-                        startPoint.getY() + direction.getValue().getY() * shipType.getShipLength()
+                stern = new Point(
+                        bow.getX() + direction.getValue().getX() * shipType.getShipLength(),
+                        bow.getY() + direction.getValue().getY() * shipType.getShipLength()
                 );
-            } while (!board.isPlacementOk(startPoint, endPoint, shipType));
-            board.addShip(createShip(startPoint, endPoint, shipType));
+            } while (!board.isPlacementOk(bow, stern, shipType));
+            board.addShip(createShip(bow, stern, shipType));
         }
         return board;
     }
