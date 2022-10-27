@@ -26,10 +26,7 @@ public class Input {
                 display.printWrongShotInputMessage();
             }
         } while (!isShotInputCorrect);
-        char rowChar = squarplayerShotInput.charAt(0);
-        int row = rowChar - 97;
-        int column = Integer.parseInt(squarplayerShotInput.substring(1)) - 1;
-        return new int[] {row, column};
+        return getChosenCoordinates();
     }
 
     /**
@@ -43,23 +40,24 @@ public class Input {
         if (!checkRegex()) {
             return false;
         }
-        if (squarplayerShotInput.equals("")) {
-            return false;
-        }
-        char rowChar = squarplayerShotInput.charAt(0);
-        if (squarplayerShotInput.length() < 2 || (rowChar - 97 >= 10)) {
-            return false;
-        }
 
-        if ((Integer.parseInt(squarplayerShotInput.substring(1)) - 1) > 9 || (Integer.parseInt(squarplayerShotInput.substring(1)) - 1) < 0) {
-            return false;
-        }
-        return true;
+        return !isCoordinateNumberOk();
+    }
+
+    private int[] getChosenCoordinates() {
+        char rowChar = squarplayerShotInput.charAt(0);
+        int row = rowChar - 97;
+        int column = Integer.parseInt(squarplayerShotInput.substring(1)) - 1;
+        return new int[]{row, column};
+    }
+
+    private boolean isCoordinateNumberOk() {
+        return (Integer.parseInt(squarplayerShotInput.substring(1)) - 1) > 9 || (Integer.parseInt(squarplayerShotInput.substring(1)) - 1) < 0;
     }
 
     private boolean checkRegex() {
         squarplayerShotInput = scanner.nextLine();
-        Pattern pattern = Pattern.compile("^[a-z][0-9]{1,2}$");
+        Pattern pattern = Pattern.compile("^[a-j][0-9]{1,2}$");
         return pattern.matcher(squarplayerShotInput).matches();
     }
 }
