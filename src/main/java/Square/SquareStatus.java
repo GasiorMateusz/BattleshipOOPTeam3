@@ -7,7 +7,7 @@ public enum SquareStatus {
     Hit("X"),
     Missed("*");
 
-    private String status;
+    private final String status;
 
     SquareStatus(String status) {
         this.status = status;

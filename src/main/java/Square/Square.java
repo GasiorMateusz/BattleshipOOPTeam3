@@ -4,7 +4,7 @@ public class Square {
 
     private final int x;
     private final int y;
-    SquareStatus status;
+    private SquareStatus status;
     public Square(int x,int y, SquareStatus status){
         this.x = x;
         this.y = y;

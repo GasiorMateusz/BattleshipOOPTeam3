@@ -1,15 +1,11 @@
 import Board.Board;
-import Board.BoardFactory;
 import Ship.Ship;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
     private final String name;
-
-    List<Ship> ships;
-    Board board;
+    private final List<Ship> ships;
+    private final Board board;
     Player(Board board,String name){
         this.name = name;
         this.board = board;
@@ -22,6 +18,7 @@ public class Player {
     public Board getBoard() {
         return board;
     }
+    public List<Ship> getShips(){return ships;}
 
     public boolean isAlive() {
         return ships.stream().anyMatch(ship -> ship.isShipAlive());
