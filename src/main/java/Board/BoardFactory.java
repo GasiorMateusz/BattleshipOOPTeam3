@@ -52,6 +52,20 @@ public class BoardFactory {
         return board;
     }
 
+    public Board demoPlacement1(){
+        Board board = new Board();
+        board.addShip(createShip(new Point(0,0),new Point(0,1),ShipType.Destroyer));
+        return board;
+
+    }
+
+    public Board demoPlacement2(){
+        Board board = new Board();
+        board.addShip(createShip(new Point(0,0),new Point(2,0),ShipType.Cruiser));
+        return board;
+
+    }
+
     public void manualPlacement(Board board) {
         /*
         loop for int 5:

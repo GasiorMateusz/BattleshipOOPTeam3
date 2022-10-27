@@ -36,14 +36,17 @@ public class SeaBattle {
     }
 
     private void setUpGame() {
-        player1 = createPlayer();
+        player1 = createPlayer1();
         currentPlayer = player1;
-        player2 = createPlayer();
+        player2 = createPlayer2();
         opponentPlayer = player2;
     }
 
-    private Player createPlayer() {
-        return new Player(boardFactory.randomPlacement(), "Elon Musk");
+    private Player createPlayer1() {
+        return new Player(boardFactory.demoPlacement1(), "Elon Musk");
+    }
+    private Player createPlayer2() {
+        return new Player(boardFactory.demoPlacement2(), "John Travoltage");
     }
 
     private void playGame() {
