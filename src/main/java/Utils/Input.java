@@ -32,7 +32,7 @@ public class Input {
         return scanner.nextLine().strip();
     }
 
-    public Point getSquare() {
+    public Point getShot() {
         do {
             isShotInputCorrect = isCorrect();
             if (!isShotInputCorrect) {
@@ -45,7 +45,7 @@ public class Input {
     public Point getPlacementSquare(Board board) {
         Point point;
         do {
-            point = getSquare();
+            point = getShot();
             isPlacementSquareInputCorrect = isPlacementSquareInputCorrect(board, point);
             if (!isPlacementSquareInputCorrect) {
                 display.printWrongPlacementInputMessage();

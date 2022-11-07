@@ -1,6 +1,6 @@
 package Board;
 
-import Controller.SeaBattle;
+import Controler.SeaBattle;
 import Ship.Ship;
 import Ship.ShipType;
 import Square.Square;
@@ -66,7 +66,8 @@ public class BoardFactory {
                         bow.getX() + direction.getValue().getX() * shipType.getShipLength(),
                         bow.getY() + direction.getValue().getY() * shipType.getShipLength()
                 );
-                if (!board.isPlacementOk(bow, stern, shipType)) seaBattle.getDisplay().printWrongShipPlacementMessage();
+                if (!board.isPlacementOk(bow, stern, shipType))
+                    seaBattle.getGame().getDisplay().printWrongShipPlacementMessage();
             } while (!board.isPlacementOk(bow, stern, shipType));
             board.addShip(createShip(bow, stern, shipType));
         });
