@@ -31,12 +31,24 @@ public class Display {
         System.out.println(ANSI_MAGENTA + shot.getStatus() + "!\n" + ANSI_RESET);
     }
 
+    public void printWrongPlacementInputMessage() {
+        System.out.println(ANSI_RED + "Wrong input, enter empty square" + ANSI_RESET);
+    }
+
     public void printWrongMenuInputMessage() {
         System.out.println(ANSI_RED + "Wrong input, enter answer from 1 to 4!" + ANSI_RESET);
     }
 
+    public void printWrongShipPlacementMessage() {
+        System.out.println(ANSI_RED + "Wrong placement, try to place your ship again" + ANSI_RESET);
+    }
+
+    public void printWrongDirectionInputMessage() {
+        System.out.println(ANSI_RED + "Wrong input, enter SOUTH, EAST, WEST, NORTH" + ANSI_RESET);
+    }
+
     public void printWrongShotInputMessage() {
-        System.out.println(ANSI_RED + "Wrong input. Try again! Shot input example: A1!" + ANSI_RESET);
+        System.out.println(ANSI_RED + "Wrong input. Try again! Square input example: A1!" + ANSI_RESET);
     }
 
     /**
