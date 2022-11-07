@@ -22,7 +22,7 @@ public class SeaBattle {
             display.mainMenu();
             option = input.getMenuOption();
             switch (option) {
-                case 1 -> playGame();
+                case 1 -> playGame(); //PvP
                 case 2 -> playGame();
                 case 3 -> showHighScore();
                 case 4 -> exitGame();
@@ -85,7 +85,7 @@ public class SeaBattle {
         display.printPlayerRound(currentPlayer.getName());
         display.boardWithoutShips(opponentPlayer.getBoard().getOcean());
         display.chooseCoordinates();
-        return input.getShot();
+        return input.getSquare();
     }
 
     private void swapPlayers() {

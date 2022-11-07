@@ -25,7 +25,7 @@ public class Input {
         return scanner.nextLine().strip();
     }
 
-    public Point getShot() {
+    public Point getSquare() {
         do {
             isShotInputCorrect = isCorrect();
             if (!isShotInputCorrect) {
