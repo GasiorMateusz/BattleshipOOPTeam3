@@ -1,7 +1,10 @@
 package Controllers;
 
+import Board.Board;
 import Board.BoardFactory;
+import Board.Direction;
 import Board.Point;
+import Ship.ShipType;
 import Utils.Display;
 import Utils.Input;
 
@@ -10,6 +13,7 @@ public class SeaBattle {
     private final Game game = new Game();
     private final Input input = new Input();
     private final Display display = new Display();
+    private final BoardFactory boardFactory = new BoardFactory();
     private Player player1;
     private Player player2;
 
@@ -45,14 +49,27 @@ public class SeaBattle {
     }
 
     private void setUpGame() {
-        player1 = createPlayer("first");
+        String name = getPlayerName("first");
+        Board board = createPlayerBoard();
+        player1 = new Player(name, board);
         currentPlayer = player1;
-        player2 = createPlayer("second");
+
+        name = getPlayerName("second");
+        board = createPlayerBoard();
+        player2 = new Player(name, board);
         opponentPlayer = player2;
     }
 
-    private Player createPlayer(String number) {
-        return new Player(boardFactory.randomPlacement(), getPlayerName(number));
+    private Board createPlayerBoard() {
+        display.shipPlacementOption();
+        Board board;
+        if (input.getPlacementOption() == 1) {
+            board = boardFactory.manualPlacement(this);
+            display.boardWithShips(board.getOcean());
+        } else {
+            board = boardFactory.randomPlacement();
+        }
+        return board;
     }
 
     private String getPlayerName(String number) {
