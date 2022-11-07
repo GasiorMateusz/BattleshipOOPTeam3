@@ -45,7 +45,7 @@ public class Board {
 
     public boolean isPlacementOk(Point bow, Point stern, ShipType shipType) {
         if (!isInBound(bow) || !isInBound(stern)) return false;
-        for (int shipPart = 0; shipPart <= shipType.getShipLength(); shipPart++) {
+        for (int shipPart = 0; shipPart < shipType.getShipLength(); shipPart++) {
             Point direction = getShipDirection(bow, stern);
             if (ocean[bow.getX() + shipPart * direction.getX()]
                     [bow.getY() + shipPart * direction.getY()].
