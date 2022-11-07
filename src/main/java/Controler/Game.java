@@ -1,4 +1,8 @@
+package Controler;
+
+import Board.Point;
 import Player.Player;
+import Round.Round;
 import Utils.Display;
 
 public class Game {
@@ -10,12 +14,12 @@ public class Game {
      * @return false if enemy lost the game, otherwise true
      */
 
-    Display display = new Display();
+    private final Display display = new Display();
     private final Player player1;
     private final Player player2;
     private Player currentPlayer;
     private Player opponentPlayer;
-
+    private final Round round = new Round();
     public Game(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
@@ -25,7 +29,11 @@ public class Game {
 
     public Player playGame() {
         while (true) {
-            if (currentPlayer.round.playRound(currentPlayer, opponentPlayer)) {
+            display.printPlayerRound(currentPlayer.getName());
+            display.boardWithoutShips(opponentPlayer.getBoard().getOcean());
+            Point point = currentPlayer.getCoordinates(opponentPlayer);
+
+            if (round.playRound(opponentPlayer, point)) {
                 continueGame();
                 continue;
             }
@@ -36,7 +44,6 @@ public class Game {
     }
 
     private void continueGame() {
-        display.boardWithoutShips(opponentPlayer.getBoard().getOcean());
         waitForFewSeconds();
         swapPlayers();
     }

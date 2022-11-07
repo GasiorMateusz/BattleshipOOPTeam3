@@ -1,20 +1,17 @@
 package Player;
 
-import Board.Board;
-import Round.Round;
+import Board.*;
 import Ship.Ship;
 import java.util.List;
 
-public class Player {
+public abstract class Player {
     private final String name;
     private final List<Ship> ships;
     private final Board board;
-    public final Round round;
-    public Player(Board board,String name, Round roundType){
+    public Player(Board board,String name){
         this.name = name;
         this.board = board;
         ships = board.getShips();
-        this.round = roundType;
     }
     public String getName(){
         return name;
@@ -29,4 +26,5 @@ public class Player {
         return ships.stream().anyMatch(ship -> ship.isShipAlive());
     }
 
+    public abstract Point getCoordinates(Player opponent);
 }

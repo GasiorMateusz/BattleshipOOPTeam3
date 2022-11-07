@@ -1,6 +1,7 @@
+package Controler;
+
 import Board.BoardFactory;
-import Player.Player;
-import Round.*;
+import Player.*;
 import Utils.Display;
 import Utils.Input;
 
@@ -48,12 +49,10 @@ public class SeaBattle {
     }
 
     private Player createHumanPlayer(String number) {
-        return new Player(boardFactory.randomPlacement(), getPlayerName(number), new HumanRound() {
-        });
+        return new HumanPlayer(boardFactory.randomPlacement(), getPlayerName(number));
     }
     private Player createAiPlayer() {
-        return new Player(boardFactory.randomPlacement(),"Computer" , new AiRound() {
-        });
+        return new ComputerPlayerEasy(boardFactory.randomPlacement(),"Computer");
     }
     private String getPlayerName(String number){
         display.askForName(number);
@@ -69,14 +68,4 @@ public class SeaBattle {
         game = new Game(player1,player2);
         game.playGame();
     }
-
-
-
-
-
-
-
-
-
-
 }
