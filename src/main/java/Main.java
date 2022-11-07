@@ -1,4 +1,4 @@
-import Controllers.SeaBattle;
+import Controller.SeaBattle;
 
 public class Main {
     public static void main(String[] args) {

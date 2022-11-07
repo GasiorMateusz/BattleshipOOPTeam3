@@ -1,6 +1,6 @@
 package Board;
 
-import Controllers.SeaBattle;
+import Controller.SeaBattle;
 import Ship.Ship;
 import Ship.ShipType;
 import Square.Square;

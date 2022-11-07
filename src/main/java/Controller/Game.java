@@ -1,6 +1,7 @@
-package Controllers;
+package Controller;
 
 import Board.Point;
+import Player.Player;
 import Ship.Ship;
 public class Game {
     /**

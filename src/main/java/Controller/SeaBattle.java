@@ -1,9 +1,10 @@
-package Controllers;
+package Controller;
 
 import Board.Board;
 import Board.BoardFactory;
 import Board.Direction;
 import Board.Point;
+import Player.Player;
 import Ship.ShipType;
 import Utils.Display;
 import Utils.Input;
