@@ -1,7 +1,11 @@
 package Utils;
 
+import Board.Board;
+import Board.Direction;
 import Board.Point;
+import Square.SquareStatus;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
@@ -9,7 +13,10 @@ public class Input {
     private final Display display = new Display();
     private final Scanner scanner = new Scanner(System.in);
     boolean isShotInputCorrect = false;
+    boolean isDirectionInputCorrect = false;
+    boolean isPlacementSquareInputCorrect = false;
     String squarePlayerShotInput = null;
+    String directionPlayerInput = null;
 
     public int getMenuOption() {
         String option = scanner.nextLine().strip();
@@ -35,12 +42,47 @@ public class Input {
         return getChosenCoordinates();
     }
 
-    /**
-     * check if shot is within the board
-     *
-     * @param
-     * @return
-     */
+    public Point getPlacementSquare(Board board) {
+        Point point;
+        do {
+            point = getSquare();
+            isPlacementSquareInputCorrect = isPlacementSquareInputCorrect(board, point);
+            if (!isPlacementSquareInputCorrect) {
+                display.printWrongPlacementInputMessage();
+            }
+        } while (!isPlacementSquareInputCorrect);
+        return point;
+    }
+
+    public boolean isPlacementSquareInputCorrect(Board board, Point point) {
+        return board.getOcean()[point.getX()][point.getY()].getStatus() != SquareStatus.Ship;
+    }
+
+    public int getPlacementOption() {
+        String option;
+        Pattern pattern = Pattern.compile("^[1-2]$");
+        do {
+            option = scanner.nextLine().strip();
+        }
+        while (!pattern.matcher(option).matches());
+        return Integer.parseInt(option);
+    }
+
+    public Direction getDirection() {
+        do {
+            isDirectionInputCorrect = isDirectionCorrect();
+            if (!isDirectionInputCorrect) {
+                display.printWrongDirectionInputMessage();
+            }
+        } while (!isDirectionInputCorrect);
+        return Direction.valueOf(directionPlayerInput);
+    }
+
+    public boolean isDirectionCorrect() {
+        directionPlayerInput = scanner.nextLine();
+        return Arrays.stream(Direction.values()).anyMatch(direction -> directionPlayerInput.equals(direction.name()));
+    }
+
     public boolean isCorrect() {
         if (!checkRegex()) {
             return false;
