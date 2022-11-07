@@ -8,7 +8,8 @@ public class Player {
     private final String name;
     private final List<Ship> ships;
     private final Board board;
-    Player(Board board,String name){
+
+    Player(String name, Board board) {
         this.name = name;
         this.board = board;
         ships = board.getShips();
