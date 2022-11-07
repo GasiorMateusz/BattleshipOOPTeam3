@@ -2,6 +2,7 @@ package Controllers;
 
 import Board.Board;
 import Ship.Ship;
+
 import java.util.List;
 
 public class Player {
@@ -14,14 +15,18 @@ public class Player {
         this.board = board;
         ships = board.getShips();
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
 
     public Board getBoard() {
         return board;
     }
-    public List<Ship> getShips(){return ships;}
+
+    public List<Ship> getShips() {
+        return ships;
+    }
 
     public boolean isAlive() {
         return ships.stream().anyMatch(ship -> ship.isShipAlive());

@@ -12,6 +12,7 @@ public class SeaBattle {
     private final Display display = new Display();
     private Player player1;
     private Player player2;
+
     private Player currentPlayer;
     private Player opponentPlayer;
 
@@ -53,7 +54,8 @@ public class SeaBattle {
     private Player createPlayer(String number) {
         return new Player(boardFactory.randomPlacement(), getPlayerName(number));
     }
-    private String getPlayerName(String number){
+
+    private String getPlayerName(String number) {
         display.askForName(number);
         return input.getName();
     }
