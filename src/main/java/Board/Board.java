@@ -4,13 +4,15 @@ import Ship.Ship;
 import Ship.ShipType;
 import Square.Square;
 import Square.SquareStatus;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static java.lang.Math.abs;
 
 public class Board {
-    private Square[][] ocean;
     private final List<Ship> ships = new ArrayList<>();
+    private Square[][] ocean;
 
     public Board() {
         populateTheOcean();
