@@ -1,5 +1,6 @@
 package Utils;
 
+import Ship.*;
 import Square.Square;
 import Square.SquareStatus;
 
@@ -86,6 +87,14 @@ public class Display {
             fields.append("\n");
         }
         System.out.println(fields);
+    }
+
+    public void printWhichShipIsBeingPlaced(ShipType shipType){
+        System.out.println("Place " + shipType.name() + " with length of " + shipType.getShipLength() + " squares.");
+    }
+
+    public void printAskForDirection(){
+        System.out.println("choose direction");
     }
 
     public void boardWithoutShips(Square[][] ocean) {
