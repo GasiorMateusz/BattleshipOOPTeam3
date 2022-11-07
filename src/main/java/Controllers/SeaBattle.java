@@ -14,7 +14,10 @@ public class SeaBattle {
     private Player player2;
     private Player currentPlayer;
     private Player opponentPlayer;
-    private final BoardFactory boardFactory = new BoardFactory();
+
+    public Display getDisplay() {
+        return display;
+    }
 
     public void mainMenu() {
         int option;
@@ -86,6 +89,18 @@ public class SeaBattle {
         display.boardWithoutShips(opponentPlayer.getBoard().getOcean());
         display.chooseCoordinates();
         return input.getSquare();
+    }
+
+    public Point askForPlacementCoordinates(ShipType shipType, Board board) {
+        display.boardWithShips(board.getOcean());
+        display.printWhichShipIsBeingPlaced(shipType);
+        display.chooseCoordinates();
+        return input.getPlacementSquare(board);
+    }
+
+    public Direction askForPlacementDirection() {
+        display.askForDirection();
+        return input.getDirection();
     }
 
     private void swapPlayers() {
