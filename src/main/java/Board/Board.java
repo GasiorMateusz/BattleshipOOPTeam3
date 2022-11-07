@@ -27,8 +27,7 @@ public class Board {
 
     public void addShip(Ship ship) {
         ships.add(ship);
-        for (Square square : ship.getSquares()
-        ) {
+        for (Square square : ship.getSquares()) {
             ocean[square.getX()][square.getY()] = square;
         }
     }
