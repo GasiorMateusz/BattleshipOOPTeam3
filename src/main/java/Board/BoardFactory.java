@@ -59,23 +59,4 @@ public class BoardFactory {
          */
     }
 
-    public Board testPlacement() {
-        List<Ship> ships = new ArrayList<>();
-        ShipType[] shipTypes = ShipType.getTypes();
-
-        int row = 0;
-        for (ShipType shipType : shipTypes) {
-            List<Square> squares = new ArrayList<>();
-            int shipTypeLength = shipType.getShipLength();
-
-            for (int col = 0; col < shipTypeLength; col++) {
-                squares.add(new Square(row, col, SquareStatus.Ship));
-            }
-
-            ships.add(new Ship(squares));
-            row++;
-        }
-        return new Board();
-    }
-
 }
