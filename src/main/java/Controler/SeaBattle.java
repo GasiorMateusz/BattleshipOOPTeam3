@@ -16,27 +16,23 @@ public class SeaBattle {
 
     public void mainMenu() {
         int option;
-        while (true) {
+        boolean stillPlaying = true;
+        while (stillPlaying) {
             display.mainMenu();
             option = input.getMenuOption();
             switch (option) {
                 case 1 -> createAndPlayPvPGame();
                 case 2 -> createAndPlayPlayerVsAiGame();
                 case 3 -> showHighScore();
-                case 4 -> exitGame();
+                case 4 -> stillPlaying = false;
                 default -> display.printWrongMenuInputMessage();
             }
         }
-
+        display.printMessage("Goodbye ! Come again !!");
     }
 
     private void showHighScore() {
         display.printMessage("To implement");
-    }
-
-    private void exitGame() {
-        display.printMessage("Goodbye ! Come again !!");
-        System.exit(0);
     }
 
     private void setUpPvP() {

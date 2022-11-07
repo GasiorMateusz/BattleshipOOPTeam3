@@ -14,6 +14,7 @@ public class Game {
      * @return false if enemy lost the game, otherwise true
      */
 
+    private final int TIME_TO_WAIT = 2000;
     private final Display display = new Display();
     private final Player player1;
     private final Player player2;
@@ -27,24 +28,29 @@ public class Game {
         opponentPlayer = player2;
     }
 
-    public Player playGame() {
+    public void playGame() {
         while (true) {
-            display.printPlayerRound(currentPlayer.getName());
-            display.boardWithoutShips(opponentPlayer.getBoard().getOcean());
-            Point point = currentPlayer.getCoordinates(opponentPlayer);
+            Point point = getPointsToShoot();
 
-            if (round.playRound(opponentPlayer, point)) {
+            boolean isEnemyAlive = round.playRound(opponentPlayer, point);
+
+            if (isEnemyAlive) {
                 continueGame();
                 continue;
             }
+
             gameOver();
             break;
         }
-        return currentPlayer;
+    }
+    private Point getPointsToShoot(){
+        display.printPlayerRound(currentPlayer.getName());
+        display.boardWithoutShips(opponentPlayer.getBoard().getOcean());
+        return currentPlayer.getCoordinates();
     }
 
     private void continueGame() {
-        waitForFewSeconds();
+        waitForSpecifiedTime(TIME_TO_WAIT);
         swapPlayers();
     }
 
@@ -64,9 +70,9 @@ public class Game {
     }
 
 
-    private void waitForFewSeconds() {
+    private void waitForSpecifiedTime(int timeToWait) {
         try {
-            Thread.sleep(1500);
+            Thread.sleep(timeToWait);
         } catch (InterruptedException ie) {
             display.printMessage(ie.getMessage());
         }

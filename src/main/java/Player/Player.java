@@ -26,5 +26,5 @@ public abstract class Player {
         return ships.stream().anyMatch(ship -> ship.isShipAlive());
     }
 
-    public abstract Point getCoordinates(Player opponent);
+    public abstract Point getCoordinates();
 }

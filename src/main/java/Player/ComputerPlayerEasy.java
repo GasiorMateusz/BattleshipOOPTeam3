@@ -10,7 +10,7 @@ public class ComputerPlayerEasy extends Player {
     }
 
     @Override
-    public Point getCoordinates(Player opponent) {
+    public Point getCoordinates() {
         int x = ThreadLocalRandom.current().nextInt(super.getBoard().getOcean().length);
         int y = ThreadLocalRandom.current().nextInt(super.getBoard().getOcean().length);
         return new Point(x, y);

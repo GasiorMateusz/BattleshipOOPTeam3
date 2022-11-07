@@ -13,11 +13,8 @@ public class Ship {
     public Ship(List<Square> squares) {
         this.squares = squares;
     }
-
-    public void updateShipStatus() {
-        if (!isAlive)
-            return;
-        isAlive = squares.stream().anyMatch(square -> square.getStatus() != SquareStatus.Hit);
+    public void setAlive(boolean alive){
+        isAlive = alive;
     }
 
     public boolean isShipAlive() {

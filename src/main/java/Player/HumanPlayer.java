@@ -13,8 +13,7 @@ public class HumanPlayer extends Player {
     }
 
     @Override
-    public Point getCoordinates(Player opponent) {
-
+    public Point getCoordinates() {
         display.chooseCoordinates();
         return input.getShot();
     }
