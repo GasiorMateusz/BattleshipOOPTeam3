@@ -1,3 +1,5 @@
+package Controllers;
+
 import Board.Point;
 import Ship.Ship;
 public class Game {

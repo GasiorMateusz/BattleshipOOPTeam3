@@ -1,3 +1,5 @@
+package Controllers;
+
 import Board.BoardFactory;
 import Board.Point;
 import Utils.Display;
