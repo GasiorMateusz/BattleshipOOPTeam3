@@ -21,6 +21,7 @@ public class SeaBattle {
     }
 
     public void mainMenu() {
+        display.clearScreen();
         int option;
         boolean stillPlaying = true;
         while (stillPlaying) {
@@ -89,6 +90,7 @@ public class SeaBattle {
         display.shipPlacementOption();
         Board board;
         if (input.getPlacementOption() == 1) {
+            display.clearScreen();
             board = boardFactory.manualPlacement(this);
             display.boardWithShips(board.getOcean());
         } else {

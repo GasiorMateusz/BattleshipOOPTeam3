@@ -24,6 +24,7 @@ public class Game {
 
     public void playGame() {
         while (true) {
+            display.clearScreen();
             Point point = getPointsToShoot();
 
             boolean isEnemyAlive = round.playRound(opponentPlayer, point);

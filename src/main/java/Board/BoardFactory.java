@@ -51,7 +51,7 @@ public class BoardFactory {
                             bow.getY() + partOfShip * (stern.getY() - bow.getY()) / shipType.getShipLength(),
                             SquareStatus.Ship));
         }
-        return new Ship(squares,shipType);
+        return new Ship(squares, shipType);
     }
 
     public Board manualPlacement(SeaBattle seaBattle) {
@@ -60,6 +60,7 @@ public class BoardFactory {
             Point bow;
             Point stern;
             do {
+                seaBattle.getDisplay().clearScreen();
                 bow = seaBattle.askForPlacementCoordinates(shipType, board);
                 Direction direction = seaBattle.askForPlacementDirection();
                 stern = new Point(
