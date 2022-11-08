@@ -32,6 +32,7 @@ public class SeaBattle {
                 case 2 -> createAndPlayPlayerVsAiGame();
                 case 3 -> showHighScore();
                 case 4 -> stillPlaying = false;
+                case 5 -> createHiddenGame();
                 default -> display.printWrongMenuInputMessage();
             }
         }
@@ -53,6 +54,11 @@ public class SeaBattle {
         game = new Game(player1, player2);
         game.playGame();
     }
+    private void createHiddenGame(){
+        setUpAiVsAi();
+        game = new Game(player1, player2);
+        game.playGame();
+    }
 
     private void setUpPvP() {
         player1 = playerFactory.getPlayer(1, createPlayerBoard(), getPlayerName("first"));
@@ -62,6 +68,13 @@ public class SeaBattle {
     private void setUpPlayerVsAi() {
         player1 = playerFactory.getPlayer(1, createPlayerBoard(), getPlayerName("first"));
         player2 = playerFactory.getPlayer(getBotDifficulty() + 1, boardFactory.randomPlacement(), "Computer");
+        ((ComputerPlayerEasy) (player2)).setUpOpponentBoard(player1.getBoard());
+    }
+    private void setUpAiVsAi(){
+        player1 = playerFactory.getPlayer(3, boardFactory.randomPlacement(), "Alfred");
+        player2 = playerFactory.getPlayer(3, boardFactory.randomPlacement(), "Gordon");
+
+        ((ComputerPlayerEasy) (player1)).setUpOpponentBoard(player2.getBoard());
         ((ComputerPlayerEasy) (player2)).setUpOpponentBoard(player1.getBoard());
     }
 

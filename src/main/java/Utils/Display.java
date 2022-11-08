@@ -121,6 +121,9 @@ public class Display {
     public void printWhichShipIsBeingPlaced(ShipType shipType) {
         System.out.println("Place " + shipType.name() + " with length of " + shipType.getShipLength() + " squares.");
     }
+    public void printShipSunk(){
+        System.out.println("Ship has been sunk");
+    }
 
     public void askForDirection() {
         System.out.println("choose direction");
