@@ -1,19 +1,17 @@
 package Square;
 
-public class Square {
+import Board.Point;
 
-    private final int x;
-    private final int y;
+public class Square extends Point {
+
     private SquareStatus status;
     public Square(int x,int y, SquareStatus status){
-        this.x = x;
-        this.y = y;
+        super(x,y);
         this.status = status;
     }
 
     public Square(int x, int y) {
-        this.x = x;
-        this.y = y;
+        super(x,y);
     }
 
     public String display () {
@@ -33,10 +31,20 @@ public class Square {
     }
 
     public int getX() {
-        return x;
+        return super.getX();
     }
 
     public int getY() {
-        return y;
+        return super.getY();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 }

@@ -1,12 +1,7 @@
 package Controler;
 
-import Board.Board;
-import Board.BoardFactory;
-import Board.Direction;
-import Board.Point;
-import Player.ComputerPlayerEasy;
-import Player.HumanPlayer;
-import Player.Player;
+import Board.*;
+import Player.*;
 import Ship.ShipType;
 import Utils.Display;
 import Utils.Input;
@@ -53,6 +48,7 @@ public class SeaBattle {
     private void setUpPlayerVsAi() {
         player1 = createHumanPlayer("first");
         player2 = createAiPlayer();
+        ((ComputerPlayerNormal)(player2)).setUpOpponentBoard(player1.getBoard());
     }
 
     private Player createHumanPlayer(String number) {
@@ -62,7 +58,7 @@ public class SeaBattle {
     }
 
     private Player createAiPlayer() {
-        return new ComputerPlayerEasy(boardFactory.randomPlacement(), "Computer");
+        return new ComputerPlayerNormal(boardFactory.randomPlacement(), "Computer");
     }
 
     private String getPlayerName(String number) {
