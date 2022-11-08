@@ -13,11 +13,12 @@ public class Round {
 
         opponent.getBoard().getOcean()[point.getX()][point.getY()].updateSquareStatus();
         opponent.getShips().forEach(this::updateShipStatus);
+        display.clearScreen();
         display.boardWithoutShips(opponent.getBoard().getOcean());
         display.printSquareStatus(opponent.getBoard().getOcean()[point.getX()][point.getY()]);
-
         return opponent.isAlive();
     }
+
     public void updateShipStatus(Ship ship) {
         if (!ship.isShipAlive())
             return;

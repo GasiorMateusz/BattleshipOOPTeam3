@@ -1,7 +1,8 @@
 package Utils;
 
 import Ship.ShipType;
-import Square.*;
+import Square.Square;
+import Square.SquareStatus;
 
 public class Display {
     private final String ANSI_RESET = "\u001B[0m";
@@ -67,7 +68,15 @@ public class Display {
         System.out.printf("Hey, %s player what's your name ?\n", number);
     }
 
-    public void clearScreen(){
+    /**
+     * Clears Bash by moving it's content to the top
+     */
+    public void clearScreen() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ie) {
+            printMessage(ie.getMessage());
+        }
         System.out.print("\033[H\033[2J");
     }
 
