@@ -1,18 +1,28 @@
 package Controler;
 
+import Board.Board;
 import Board.BoardFactory;
-import Player.*;
+import Board.Direction;
+import Board.Point;
+import Player.ComputerPlayerEasy;
+import Player.HumanPlayer;
+import Player.Player;
+import Ship.ShipType;
 import Utils.Display;
 import Utils.Input;
 
 public class SeaBattle {
 
-    private Game game;
     private final Input input = new Input();
     private final Display display = new Display();
+    private final BoardFactory boardFactory = new BoardFactory();
+    private Game game;
     private Player player1;
     private Player player2;
-    private final BoardFactory boardFactory = new BoardFactory();
+
+    public Display getDisplay() {
+        return display;
+    }
 
     public void mainMenu() {
         int option;
@@ -39,29 +49,61 @@ public class SeaBattle {
         player1 = createHumanPlayer("first");
         player2 = createHumanPlayer("second");
     }
+
     private void setUpPlayerVsAi() {
         player1 = createHumanPlayer("first");
         player2 = createAiPlayer();
     }
 
     private Player createHumanPlayer(String number) {
-        return new HumanPlayer(boardFactory.randomPlacement(), getPlayerName(number));
+        String name = getPlayerName(number);
+        Board board = createPlayerBoard();
+        return new HumanPlayer(board, name);
     }
+
     private Player createAiPlayer() {
-        return new ComputerPlayerEasy(boardFactory.randomPlacement(),"Computer");
+        return new ComputerPlayerEasy(boardFactory.randomPlacement(), "Computer");
     }
-    private String getPlayerName(String number){
+
+    private String getPlayerName(String number) {
         display.askForName(number);
         return input.getName();
     }
-    private void createAndPlayPvPGame(){
+
+    private void createAndPlayPvPGame() {
         setUpPvP();
-        game = new Game(player1,player2);
+        game = new Game(player1, player2);
         game.playGame();
     }
-    private void createAndPlayPlayerVsAiGame(){
+
+    private void createAndPlayPlayerVsAiGame() {
         setUpPlayerVsAi();
-        game = new Game(player1,player2);
+        game = new Game(player1, player2);
         game.playGame();
     }
+
+    private Board createPlayerBoard() {
+        display.shipPlacementOption();
+        Board board;
+        if (input.getPlacementOption() == 1) {
+            board = boardFactory.manualPlacement(this);
+            display.boardWithShips(board.getOcean());
+        } else {
+            board = boardFactory.randomPlacement();
+        }
+        return board;
+    }
+
+    public Point askForPlacementCoordinates(ShipType shipType, Board board) {
+        display.boardWithShips(board.getOcean());
+        display.printWhichShipIsBeingPlaced(shipType);
+        display.chooseCoordinates();
+        return input.getPlacementSquare(board);
+    }
+
+    public Direction askForPlacementDirection() {
+        display.askForDirection();
+        return input.getDirection();
+    }
+
 }

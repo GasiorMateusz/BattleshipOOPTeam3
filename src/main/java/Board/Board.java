@@ -4,13 +4,15 @@ import Ship.Ship;
 import Ship.ShipType;
 import Square.Square;
 import Square.SquareStatus;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import static java.lang.Math.abs;
 
 public class Board {
-    private Square[][] ocean;
     private final List<Ship> ships = new ArrayList<>();
+    private Square[][] ocean;
 
     public Board() {
         populateTheOcean();
@@ -42,7 +44,7 @@ public class Board {
 
     public boolean isPlacementOk(Point bow, Point stern, ShipType shipType) {
         if (!isInBound(bow) || !isInBound(stern)) return false;
-        for (int shipPart = 0; shipPart <= shipType.getShipLength(); shipPart++) {
+        for (int shipPart = 0; shipPart < shipType.getShipLength(); shipPart++) {
             Point direction = getShipDirection(bow, stern);
             if (ocean[bow.getX() + shipPart * direction.getX()]
                     [bow.getY() + shipPart * direction.getY()].
