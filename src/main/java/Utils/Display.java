@@ -35,7 +35,7 @@ public class Display {
     }
 
     public void printWrongMenuInputMessage() {
-        System.out.println(ANSI_RED + "Wrong input, enter answer from 1 to 4!" + ANSI_RESET);
+        System.out.println(ANSI_RED + "Wrong input, please enter correct number!" + ANSI_RESET);
     }
 
     public void printWrongShipPlacementMessage() {
@@ -61,6 +61,11 @@ public class Display {
                         "\t3. High scores\n" +
                         "\t4. Quit\n"
         );
+    }
+    public void botDifficulty(){
+        System.out.println("Please choose bot difficulty level");
+        System.out.println("1: Easy");
+        System.out.println("2: Normal");
     }
 
     public void askForName(String number) {
