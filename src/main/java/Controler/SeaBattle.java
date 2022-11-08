@@ -8,6 +8,7 @@ import Utils.Input;
 
 public class SeaBattle {
 
+    private Game game;
     private final Input input = new Input();
     private final Display display = new Display();
     private final BoardFactory boardFactory = new BoardFactory();
@@ -15,6 +16,8 @@ public class SeaBattle {
     private Game game;
     private Player player1;
     private Player player2;
+    private final BoardFactory boardFactory = new BoardFactory();
+    HighScores highScores = new HighScores();
 
     public Display getDisplay() {
         return display;
@@ -40,7 +43,7 @@ public class SeaBattle {
     }
 
     private void showHighScore() {
-        display.printMessage("To implement");
+        display.printHighScores(highScores);
     }
 
     private void createAndPlayPvPGame() {
