@@ -67,6 +67,10 @@ public class Display {
         System.out.printf("Hey, %s player what's your name ?\n", number);
     }
 
+    public void clearScreen(){
+        System.out.print("\033[H\033[2J");
+    }
+
     public void shipPlacementOption() {
         System.out.println(
                 "Choose ship placement mode:\n" +
