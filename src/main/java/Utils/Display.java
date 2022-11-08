@@ -1,8 +1,7 @@
 package Utils;
 
 import Ship.ShipType;
-import Square.Square;
-import Square.SquareStatus;
+import Square.*;
 
 public class Display {
     private final String ANSI_RESET = "\u001B[0m";
@@ -32,7 +31,7 @@ public class Display {
     }
 
     public void printWrongPlacementInputMessage() {
-        System.out.println(ANSI_RED + "Wrong input, enter empty square" + ANSI_RESET);
+        System.out.println(ANSI_RED + "Wrong input, enter empty square and 1 square away from existing ships" + ANSI_RESET);
     }
 
     public void printWrongMenuInputMessage() {

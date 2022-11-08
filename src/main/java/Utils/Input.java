@@ -3,7 +3,6 @@ package Utils;
 import Board.Board;
 import Board.Direction;
 import Board.Point;
-import Square.SquareStatus;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -46,16 +45,12 @@ public class Input {
         Point point;
         do {
             point = getShot();
-            isPlacementSquareInputCorrect = isPlacementSquareInputCorrect(board, point);
+            isPlacementSquareInputCorrect = board.canNewShipBeHere(point);
             if (!isPlacementSquareInputCorrect) {
                 display.printWrongPlacementInputMessage();
             }
         } while (!isPlacementSquareInputCorrect);
         return point;
-    }
-
-    public boolean isPlacementSquareInputCorrect(Board board, Point point) {
-        return board.getOcean()[point.getX()][point.getY()].getStatus() != SquareStatus.Ship;
     }
 
     public int getPlacementOption() {

@@ -42,14 +42,53 @@ public class Board {
         return ocean;
     }
 
+    public boolean canNewShipBeHere(Point squareToCheck) {
+        for (int x = -1; x < 2; x++) {
+            for (int y = -1; y < 2; y++) {
+                if (isInBound(new Point(squareToCheck.getX() + x, squareToCheck.getY() + y))) {
+                    if (ocean[squareToCheck.getX() + x][squareToCheck.getY() + y].getStatus() == SquareStatus.Ship)
+                        return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    private boolean isThisSquareShipOrIsAShipNextToIt(Point bow, int shipPart,
+                                                      Point shipPlacementDirection) {
+        Point squareToCheck = new Point(
+                bow.getX() + shipPart * shipPlacementDirection.getX(),
+                bow.getY() + shipPart * shipPlacementDirection.getY());
+
+        Point restOfTheShipDirection = new Point(
+                -shipPlacementDirection.getX(),
+                -shipPlacementDirection.getY());
+
+        for (int x = -1; x < 2; x++) {
+            for (int y = -1; y < 2; y++) {
+                if (isInBound(new Point(squareToCheck.getX() + x, squareToCheck.getY() + y))) {
+                    if (shipPart == 0) {
+                        if (ocean[squareToCheck.getX() + x][squareToCheck.getY() + y].getStatus() == SquareStatus.Ship)
+                            return true;
+                    } else {
+                        if (x != restOfTheShipDirection.getX() && y != restOfTheShipDirection.getY()
+                        ) {
+                            if (ocean[squareToCheck.getX() + x][squareToCheck.getY() + y].getStatus() == SquareStatus.Ship)
+                                return true;
+                        }
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
     public boolean isPlacementOk(Point bow, Point stern, ShipType shipType) {
         if (!isInBound(bow) || !isInBound(stern)) return false;
         for (int shipPart = 0; shipPart < shipType.getShipLength(); shipPart++) {
             Point direction = getShipDirection(bow, stern);
-            if (ocean[bow.getX() + shipPart * direction.getX()]
-                    [bow.getY() + shipPart * direction.getY()].
-                    getStatus() == SquareStatus.Ship)
-                return false;
+            if (isThisSquareShipOrIsAShipNextToIt(bow, shipPart, direction)) return false;
         }
         return true;
     }
