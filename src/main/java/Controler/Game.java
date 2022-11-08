@@ -14,15 +14,12 @@ public class Game {
     private final Round round = new Round();
     private Player currentPlayer;
     private Player opponentPlayer;
+
     public Game(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
         currentPlayer = player1;
         opponentPlayer = player2;
-    }
-
-    public Display getDisplay() {
-        return display;
     }
 
     public void playGame() {

@@ -67,7 +67,7 @@ public class BoardFactory {
                         bow.getY() + direction.getValue().getY() * shipType.getShipLength()
                 );
                 if (!board.isPlacementOk(bow, stern, shipType))
-                    seaBattle.getGame().getDisplay().printWrongShipPlacementMessage();
+                    seaBattle.getDisplay().printWrongShipPlacementMessage();
             } while (!board.isPlacementOk(bow, stern, shipType));
             board.addShip(createShip(bow, stern, shipType));
         });

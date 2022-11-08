@@ -20,8 +20,8 @@ public class SeaBattle {
     private Player player1;
     private Player player2;
 
-    public Game getGame() {
-        return game;
+    public Display getDisplay() {
+        return display;
     }
 
     public void mainMenu() {
