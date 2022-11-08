@@ -11,6 +11,7 @@ public class SeaBattle {
     private final Input input = new Input();
     private final Display display = new Display();
     private final BoardFactory boardFactory = new BoardFactory();
+    private final PlayerFactory playerFactory = new PlayerFactory();
     private Game game;
     private Player player1;
     private Player player2;
@@ -40,32 +41,6 @@ public class SeaBattle {
         display.printMessage("To implement");
     }
 
-    private void setUpPvP() {
-        player1 = createHumanPlayer("first");
-        player2 = createHumanPlayer("second");
-    }
-
-    private void setUpPlayerVsAi() {
-        player1 = createHumanPlayer("first");
-        player2 = createAiPlayer();
-        ((ComputerPlayerNormal)(player2)).setUpOpponentBoard(player1.getBoard());
-    }
-
-    private Player createHumanPlayer(String number) {
-        String name = getPlayerName(number);
-        Board board = createPlayerBoard();
-        return new HumanPlayer(board, name);
-    }
-
-    private Player createAiPlayer() {
-        return new ComputerPlayerNormal(boardFactory.randomPlacement(), "Computer");
-    }
-
-    private String getPlayerName(String number) {
-        display.askForName(number);
-        return input.getName();
-    }
-
     private void createAndPlayPvPGame() {
         setUpPvP();
         game = new Game(player1, player2);
@@ -76,6 +51,38 @@ public class SeaBattle {
         setUpPlayerVsAi();
         game = new Game(player1, player2);
         game.playGame();
+    }
+
+    private void setUpPvP() {
+        player1 = playerFactory.getPlayer(1, createPlayerBoard(), getPlayerName("first"));
+        player2 = playerFactory.getPlayer(1, createPlayerBoard(), getPlayerName("second"));
+    }
+
+    private void setUpPlayerVsAi() {
+        player1 = playerFactory.getPlayer(1, createPlayerBoard(), getPlayerName("first"));
+        player2 = playerFactory.getPlayer(getBotDifficulty() + 1, boardFactory.randomPlacement(), "Computer");
+        ((ComputerPlayerEasy) (player2)).setUpOpponentBoard(player1.getBoard());
+    }
+
+    private int getBotDifficulty() {
+        display.botDifficulty();
+        boolean stillChoosing = true;
+        int answer;
+
+        do {
+            answer = input.getMenuOption();
+            switch (answer) {
+                case 1, 2 -> stillChoosing = false;
+                default -> display.printWrongMenuInputMessage();
+            }
+        } while (stillChoosing);
+
+        return answer;
+    }
+
+    private String getPlayerName(String number) {
+        display.askForName(number);
+        return input.getName();
     }
 
     private Board createPlayerBoard() {
@@ -101,5 +108,4 @@ public class SeaBattle {
         display.askForDirection();
         return input.getDirection();
     }
-
 }
