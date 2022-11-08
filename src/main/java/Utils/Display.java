@@ -65,14 +65,14 @@ public class Display {
     }
 
     public void askForName(String number) {
-        System.out.printf("Hey, %s player what's your name ?", number);
+        System.out.printf("Hey, %s player what's your name ?\n", number);
     }
 
     public void shipPlacementOption() {
         System.out.println(
                 "Choose ship placement mode:\n" +
                         "\t1. manual\n" +
-                        "\t2. random\n"
+                        "\t2. random"
         );
     }
 
