@@ -3,10 +3,7 @@ package Controler;
 import Player.Player;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 public class HighScores {
 
@@ -21,7 +18,7 @@ public class HighScores {
         String fileName = HighScores.FILE_NAME;
         File file = new File(fileName);
         boolean fileExists = file.exists();
-        Map<Integer, String> highScores = new HashMap<>();
+        Map<Integer, String> highScores = new TreeMap<>();
 
         if (!fileExists) {
             createNewFile(fileName, file);
@@ -91,7 +88,7 @@ public class HighScores {
                 if (playerScore < key) {
                     highScores.remove(key);
                     highScores.put(playerScore, playerName);
-
+                    break;
                 }
             }
         } else {
