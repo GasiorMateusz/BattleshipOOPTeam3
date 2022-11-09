@@ -1,0 +1,6 @@
+konrad;66
+kolega darka;51
+joanna;36
+mariola;53
+darek;78
+daniel;15

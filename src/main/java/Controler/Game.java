@@ -6,8 +6,17 @@ import Round.Round;
 import Utils.Display;
 
 public class Game {
+    /**
+     * Takes all the actions required to make single player's move.
+     *
+     * @param enemyPlayer - opposite player
+     * @param playerShot - array with shot's coordinates
+     * @return false if enemy lost the game, otherwise true
+     */
 
     private final int TIME_TO_WAIT = 2000;
+    private int numberOfRounds = 0;
+    HighScores highScores = new HighScores();
     private final Display display = new Display();
     private final Player player1;
     private final Player player2;
@@ -25,6 +34,7 @@ public class Game {
     public void playGame() {
         while (true) {
             display.clearScreen();
+            numberOfRounds++;
             Point point = getPointsToShoot();
 
             boolean isEnemyAlive = round.playRound(opponentPlayer, point);
@@ -35,6 +45,7 @@ public class Game {
             }
 
             gameOver();
+            highScores.checkIfPlayerResultIsHighScore(currentPlayer, numberOfRounds);
             break;
         }
     }

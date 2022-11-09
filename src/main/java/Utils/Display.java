@@ -1,6 +1,7 @@
 package Utils;
 
 import Ship.ShipType;
+import Controler.HighScores;
 import Square.Square;
 import Square.SquareStatus;
 
@@ -166,6 +167,10 @@ public class Display {
      */
     public void gameOver(String winner) {
         System.out.printf("Congratulations! %s has won!%n", winner);
+    }
+
+    public void printHighScores(HighScores highScores) {
+        System.out.println(highScores.highScoresToString());
     }
 
 }
