@@ -97,7 +97,7 @@ public class SeaBattle {
 
     private String getPlayerName(String number) {
         display.askForName(number);
-        return input.getName();
+        return input.getPlayerNameFromUser();
     }
 
     private Board createPlayerBoard() {

@@ -133,7 +133,7 @@ public class Display {
     }
 
     public void askForDirection() {
-        System.out.println("choose direction");
+        System.out.println("Choose direction: North, West, South, East");
     }
 
     public void boardWithoutShips(Square[][] ocean) {
