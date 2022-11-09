@@ -15,7 +15,7 @@ public class Game {
      * @return false if enemy lost the game, otherwise true
      */
 
-    private final int TIME_TO_WAIT = 1000;
+    private final int TIME_TO_WAIT = 0;
     private int numberOfRounds = 0;
     HighScores highScores = new HighScores();
     private final Display display = new Display();

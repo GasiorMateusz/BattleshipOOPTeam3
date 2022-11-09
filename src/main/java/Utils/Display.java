@@ -85,7 +85,7 @@ public class Display {
      */
     public void clearScreen() {
         try {
-            Thread.sleep(400);
+            Thread.sleep(0);
         } catch (InterruptedException ie) {
             System.out.println(ie.getMessage());
         }
