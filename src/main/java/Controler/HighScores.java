@@ -81,12 +81,7 @@ public class HighScores {
      */
     public void checkIfPlayerResultIsHighScore(Player player, int numberOfRounds) {
         String playerName = player.getName();
-        int playerScore = 0;
-        if (numberOfRounds % 2 != 0) {
-            playerScore = (numberOfRounds + 1) / 2;
-        } else {
-            playerScore = numberOfRounds / 2;
-        }
+        int playerScore = (int)Math.ceil(numberOfRounds / 2.0);
 
         Map<Integer, String> highScores = readHighScoresFromFile();
         Set<Integer> keys = highScores.keySet();
@@ -96,6 +91,7 @@ public class HighScores {
                 if (playerScore < key) {
                     highScores.remove(key);
                     highScores.put(playerScore, playerName);
+
                 }
             }
         } else {
@@ -119,11 +115,10 @@ public class HighScores {
             highScoresBuilder.append(line + "\n");
         }
 
-        try {
-            FileWriter fileWriter = new FileWriter(fileName);
-            BufferedWriter writer = new BufferedWriter(fileWriter);
+        try (FileWriter fileWriter = new FileWriter(fileName);
+                BufferedWriter writer = new BufferedWriter(fileWriter);) {
+
             writer.write(String.valueOf(highScoresBuilder));
-            writer.close();
             System.out.println("High Scores saved");
         } catch (IOException e) {
             System.out.println("Failed to save " + fileName);

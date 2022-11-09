@@ -13,10 +13,8 @@ public class SeaBattle {
     private final Display display = new Display();
     private final BoardFactory boardFactory = new BoardFactory();
     private final PlayerFactory playerFactory = new PlayerFactory();
-    private Game game;
     private Player player1;
     private Player player2;
-    private final BoardFactory boardFactory = new BoardFactory();
     HighScores highScores = new HighScores();
 
     public Display getDisplay() {
