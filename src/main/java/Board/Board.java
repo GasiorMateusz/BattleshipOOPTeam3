@@ -66,14 +66,16 @@ public class Board {
 
         for (int x = -1; x < 2; x++) {
             for (int y = -1; y < 2; y++) {
-                if (isInBound(new Point(squareToCheck.getX() + x, squareToCheck.getY() + y))) {
+                int xCoor = squareToCheck.getX() + x;
+                int yCoor = squareToCheck.getY() + y;
+                if (isInBound(new Point(xCoor,yCoor ))) {
                     if (shipPart == 0) {
-                        if (ocean[squareToCheck.getX() + x][squareToCheck.getY() + y].getStatus() == SquareStatus.Ship)
+                        if (ocean[xCoor][yCoor].getStatus() == SquareStatus.Ship)
                             return true;
                     } else {
-                        if (x != restOfTheShipDirection.getX() && y != restOfTheShipDirection.getY()
+                        if (x != restOfTheShipDirection.getX() || y != restOfTheShipDirection.getY()
                         ) {
-                            if (ocean[squareToCheck.getX() + x][squareToCheck.getY() + y].getStatus() == SquareStatus.Ship)
+                            if (ocean[xCoor][yCoor].getStatus() == SquareStatus.Ship)
                                 return true;
                         }
                     }
