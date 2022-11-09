@@ -42,9 +42,8 @@ public class HighScores {
     }
 
     private static void createNewFile(String fileName, File file) {
-        boolean fileExists;
         try {
-            fileExists = file.createNewFile();
+            file.createNewFile();
         } catch (IOException e) {
             System.out.println("Failed to create new " + fileName + " file");
         }
@@ -113,7 +112,7 @@ public class HighScores {
         }
 
         try (FileWriter fileWriter = new FileWriter(fileName);
-                BufferedWriter writer = new BufferedWriter(fileWriter);) {
+                BufferedWriter writer = new BufferedWriter(fileWriter)) {
 
             writer.write(String.valueOf(highScoresBuilder));
             System.out.println("High Scores saved");

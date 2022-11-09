@@ -1,6 +1,7 @@
-konrad;66
-kolega darka;51
-joanna;36
-mariola;53
-darek;78
 daniel;15
+joanna;36
+Alfred Normal;50
+Alfred Normal;51
+Alfred Normal;53
+konrad;66
+darek;78

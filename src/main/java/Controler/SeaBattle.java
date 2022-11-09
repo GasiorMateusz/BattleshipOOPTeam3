@@ -8,11 +8,11 @@ import Utils.Input;
 
 public class SeaBattle {
 
-    private Game game;
     private final Input input = new Input();
     private final Display display = new Display();
     private final BoardFactory boardFactory = new BoardFactory();
     private final PlayerFactory playerFactory = new PlayerFactory();
+    private Game game;
     private Player player1;
     private Player player2;
     HighScores highScores = new HighScores();
@@ -37,7 +37,7 @@ public class SeaBattle {
                 default -> display.printWrongMenuInputMessage();
             }
         }
-        display.printMessage("Goodbye ! Come again !!");
+        display.printGoodByeMessage();
     }
 
     private void showHighScore() {

@@ -1,8 +1,9 @@
 package Controler;
 
 import Board.Point;
-import Player.Player;
+import Player.*;
 import Round.Round;
+import Square.SquareStatus;
 import Utils.Display;
 
 public class Game {
@@ -14,7 +15,7 @@ public class Game {
      * @return false if enemy lost the game, otherwise true
      */
 
-    private final int TIME_TO_WAIT = 2000;
+    private final int TIME_TO_WAIT = 1000;
     private int numberOfRounds = 0;
     HighScores highScores = new HighScores();
     private final Display display = new Display();
@@ -53,7 +54,21 @@ public class Game {
     private Point getPointsToShoot() {
         display.printPlayerRound(currentPlayer.getName());
         display.boardWithoutShips(opponentPlayer.getBoard().getOcean());
-        return currentPlayer.getCoordinates();
+        if (currentPlayer instanceof HumanPlayer) {
+            boolean isPointNotCorrect = true;
+            Point point;
+            do {
+                point = currentPlayer.getCoordinates();
+                SquareStatus status = opponentPlayer.getBoard().getOcean()[point.getX()][point.getY()].getStatus();
+                if (status == SquareStatus.Empty || status == SquareStatus.Ship)
+                    isPointNotCorrect = false;
+                else
+                    display.printShotPositionRepeated();
+            } while (isPointNotCorrect);
+            return point;
+        } else {
+            return currentPlayer.getCoordinates();
+        }
     }
 
     private void continueGame() {
@@ -81,7 +96,7 @@ public class Game {
         try {
             Thread.sleep(timeToWait);
         } catch (InterruptedException ie) {
-            display.printMessage(ie.getMessage());
+            display.printExceptionMessage(ie.getMessage());
         }
     }
 }

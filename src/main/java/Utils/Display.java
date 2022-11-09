@@ -16,10 +16,16 @@ public class Display {
     private final String ANSI_MISSED = "\033[48;5;15m";
     private final String ANSI_HIT = "\033[48;5;9m";
 
-    public void printMessage(String message) {
+    public void printExceptionMessage(String message) {
         System.out.println(message);
     }
 
+   public void printShotPositionRepeated(){
+       System.out.println(ANSI_RED + "You've already shot here!" + ANSI_RESET);
+   }
+    public void printGoodByeMessage(){
+        System.out.println("Goodbye! Come again!!");
+    }
     public void chooseCoordinates() {
         System.out.print(ANSI_GREEN + "Choose coordinates: " + ANSI_RESET);
     }
@@ -79,9 +85,9 @@ public class Display {
      */
     public void clearScreen() {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(400);
         } catch (InterruptedException ie) {
-            printMessage(ie.getMessage());
+            System.out.println(ie.getMessage());
         }
         System.out.print("\033[H\033[2J");
     }
@@ -158,9 +164,6 @@ public class Display {
         System.out.println(fields);
     }
 
-    public void highScores() {
-
-    }
 
     /**
      * prints the outcome of the game when it is over.(Congratulations to the winner)
@@ -172,5 +175,6 @@ public class Display {
     public void printHighScores(HighScores highScores) {
         System.out.println(highScores.highScoresToString());
     }
+
 
 }
