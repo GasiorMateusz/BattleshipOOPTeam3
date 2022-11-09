@@ -1,7 +1,10 @@
 daniel;15
-joanna;36
-Alfred Normal;50
-Alfred Normal;51
+Alfred Normal;28
+Superman Normal;29
+Batman Normal;34
+Batman Normal;43
+Batman Normal;49
+Batman Normal;52
 Alfred Normal;53
+Batman Normal;56
 konrad;66
-darek;78

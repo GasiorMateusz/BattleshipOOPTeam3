@@ -72,8 +72,8 @@ public class SeaBattle {
         ((ComputerPlayerEasy) (player2)).setUpOpponentBoard(player1.getBoard());
     }
     private void setUpAiVsAi(){
-        player1 = playerFactory.getPlayer(3, boardFactory.randomPlacement(), "Alfred");
-        player2 = playerFactory.getPlayer(3, boardFactory.randomPlacement(), "Gordon");
+        player1 = playerFactory.getPlayer(3, boardFactory.randomPlacement(), "Batman");
+        player2 = playerFactory.getPlayer(3, boardFactory.randomPlacement(), "Superman");
 
         ((ComputerPlayerEasy) (player1)).setUpOpponentBoard(player2.getBoard());
         ((ComputerPlayerEasy) (player2)).setUpOpponentBoard(player1.getBoard());

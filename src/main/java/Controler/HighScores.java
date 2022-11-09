@@ -82,14 +82,15 @@ public class HighScores {
         Map<Integer, String> highScores = readHighScoresFromFile();
         Set<Integer> keys = highScores.keySet();
 
-        if (keys.size() == 10) {
+        if (keys.size() >= 10) {
+            Integer worstScore = 0;
             for (Integer key : keys) {
-                if (playerScore < key) {
-                    highScores.remove(key);
-                    highScores.put(playerScore, playerName);
-                    break;
+                if (worstScore < key) {
+                    worstScore = key;
                 }
             }
+            highScores.remove(worstScore);
+            highScores.put(playerScore, playerName);
         } else {
             highScores.put(playerScore, playerName);
         }
