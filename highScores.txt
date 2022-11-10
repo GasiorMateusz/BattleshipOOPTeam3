@@ -2,9 +2,9 @@ daniel;15
 Alfred Normal;28
 Superman Normal;29
 Batman Normal;34
+Batman Normal;35
+Batman Normal;38
+Batman Normal;41
+Batman Normal;42
 Batman Normal;43
-Batman Normal;49
-Batman Normal;52
-Alfred Normal;53
-Batman Normal;56
-konrad;66
+Superman Normal;54

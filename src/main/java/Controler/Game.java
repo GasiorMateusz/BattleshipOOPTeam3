@@ -44,9 +44,9 @@ public class Game {
                 continueGame();
                 continue;
             }
-
-            gameOver();
-            highScores.checkIfPlayerResultIsHighScore(currentPlayer, numberOfRounds);
+            int score = (int)Math.ceil(numberOfRounds / 2.0);
+            gameOver(score);
+            highScores.checkIfPlayerResultIsHighScore(currentPlayer, score);
             break;
         }
     }
@@ -86,9 +86,9 @@ public class Game {
         }
     }
 
-    private void gameOver() {
+    private void gameOver(int score) {
         display.boardWithoutShips(opponentPlayer.getBoard().getOcean());
-        display.gameOver(currentPlayer.getName());
+        display.gameOver(currentPlayer.getName(), score);
     }
 
 

@@ -73,11 +73,10 @@ public class HighScores {
      * Checks if the player's score is a high score (top 10 of current high scores in highScores.txt).
      *
      * @param player - player that has won the game
-     * @param numberOfRounds - total number of game rounds
+     *
      */
-    public void checkIfPlayerResultIsHighScore(Player player, int numberOfRounds) {
+    public void checkIfPlayerResultIsHighScore(Player player, int playerScore) {
         String playerName = player.getName();
-        int playerScore = (int)Math.ceil(numberOfRounds / 2.0);
 
         Map<Integer, String> highScores = readHighScoresFromFile();
         Set<Integer> keys = highScores.keySet();

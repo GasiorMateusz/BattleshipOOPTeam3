@@ -168,8 +168,8 @@ public class Display {
     /**
      * prints the outcome of the game when it is over.(Congratulations to the winner)
      */
-    public void gameOver(String winner) {
-        System.out.printf("Congratulations! %s has won!%n", winner);
+    public void gameOver(String winner, int score) {
+        System.out.printf("Congratulations!\n%s has won in %d rounds !%n", winner, score);
     }
 
     public void printHighScores(HighScores highScores) {
